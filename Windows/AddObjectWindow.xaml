@@ -1,0 +1,139 @@
+﻿<Window x:Class="Diplom.Windows.AddObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Diplom.Windows"
+        mc:Ignorable="d"
+        Name="this"
+        Title="AddObjectWindow" Height="800" Width="500" Background="#D6FDD3">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+
+            <StackPanel Orientation="Vertical" 
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center">
+
+                <TextBlock
+    
+             Foreground="Black"
+             Text="Добавление объекта"
+            FontSize="20"/>
+
+            </StackPanel>
+
+
+            <Grid Grid.Row="1">
+                <TextBlock  Margin="10" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Error}" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Cursor="">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding Name}" Margin="0,10" materialDesign:HintAssist.Hint="Название" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding Temperature}" Margin="0,10" materialDesign:HintAssist.Hint="Температура, °С" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding Radius}" Margin="0,10" materialDesign:HintAssist.Hint="Ширина (радиус), м" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding Height}" Margin="0,10" materialDesign:HintAssist.Hint="Высота, м" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="4">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding DistanceFromSurface}" Margin="0,10" materialDesign:HintAssist.Hint="Расстояние от поверхности, м" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="5">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding WallThickness}" Margin="0,10" materialDesign:HintAssist.Hint="Толщина стенки, м" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="6">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <ComboBox
+ 
+      ItemsSource="{Binding Materials}"
+      SelectedItem="{Binding SelectedMaterial}"
+      Margin="0"
+      materialDesign:HintAssist.Hint="Материал"
+ FontSize="10"
+     Background="#D6FDD3"
+     
+         >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="7">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding Clutter}" Margin="0,10" materialDesign:HintAssist.Hint="Загромождённость" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Viewbox Width="80">
+                <Button 
+                    Command="{Binding OkCommand}"  
+                  Margin="15"
+                  Style="{StaticResource MaterialDesignRaisedButton}"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+              Background="#D6FDD3" BorderBrush="Black" Width="45" Height="40">
+                    <materialDesign:PackIcon Kind="ArrowRight" />
+                </Button>
+
+            </Viewbox>
+
+        </Grid>
+
+    </Grid>
+</Window>

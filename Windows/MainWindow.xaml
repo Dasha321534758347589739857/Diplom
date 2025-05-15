@@ -1,0 +1,664 @@
+﻿<Window x:Class="Diplom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rules="clr-namespace:Diplom.Validation"
+        xmlns:ChartDirector="clr-namespace:ChartDirector;assembly=ChartDirector.Net.Desktop.Controls"
+        xmlns:local="clr-namespace:Diplom"
+        Name ="this"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="800" Width="1200" Background="White">
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.1*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="3">
+            <Grid Grid.Row="3">
+                <StackPanel >
+                    <Label
+   
+ Margin="2" VerticalAlignment="Center"
+VerticalContentAlignment="Center" 
+  HorizontalContentAlignment="Left"
+  
+>
+                        Пользователь:
+                    </Label>
+                    <TextBox
+   Grid.Row="0" Grid.Column="1" Margin="2" VerticalAlignment="Center"
+   VerticalContentAlignment="Center" 
+     HorizontalContentAlignment="Right"
+     BorderBrush="#42b445"
+     BorderThickness="1"
+   IsReadOnly="True" 
+   Text="{Binding NameUser}">
+
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="0">
+            
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+
+                    <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <ComboBox
+                    Margin="5"
+                    materialDesign:HintAssist.Hint="Ввод параметров"
+                     HorizontalAlignment="Center"
+                    VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="esCombo"
+                    ItemsSource="{Binding EmergensySituationInAnObject}" SelectedItem="{Binding SelectedES}"  >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <TextBlock Text="{Binding Path=EmergencySituation.Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button 
+Content="Выбрать параметры" Margin="10"
+Background="White" BorderBrush="#42b445 " Foreground="Black"
+HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding ChooseCommand}"
+Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
+
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <ComboBox
+            Margin="5"
+            materialDesign:HintAssist.Hint="Ввод параметров"
+             HorizontalAlignment="Center"
+            VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="soCombo"
+            ItemsSource="{Binding SubstanceInAnObject}" SelectedItem="{Binding SelectedSIO}" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <TextBlock Text="{Binding Path=Substance.Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" Background="White" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="7.1*" />
+                <RowDefinition Height="1*" />
+
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+
+                <Label Margin ="5" FontSize="20" BorderBrush="White"
+                       BorderThickness="4" Foreground="Black"  >
+                    Данные для расчёта:
+                </Label>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" >
+                    <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Stretch" 
+                 >
+                        <GroupBox VerticalAlignment=" Top"   FontSize="20">
+                            <GroupBox.Header >
+                                <Viewbox Width="auto">
+                                    <Label Background="White" Width="350">
+                                        Вещество в объекте
+                                    </Label>
+                                    
+                                </Viewbox>
+                            </GroupBox.Header>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="41*"/>
+                                    <ColumnDefinition Width="69*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.ColumnSpan="2">
+                                    <ComboBox
+                                 Margin="5"
+                                 materialDesign:HintAssist.Hint="Вещество"
+                                  HorizontalAlignment="Stretch"
+                                
+                                 VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="sCombo"
+                                 ItemsSource="{Binding Substances}" SelectedItem="{Binding SelectedSubstance}" >
+                                        <ComboBox.ItemTemplate >
+                                            <DataTemplate >
+                                                <TextBlock Background="White" Text="{Binding Path=Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <ComboBox
+                                Margin="5"
+                                materialDesign:HintAssist.Hint="Объект"
+                                 HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="oCombo"
+                                ItemsSource="{Binding Objectss }" SelectedItem="{Binding SelectedObject}" >
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
+
+                                    <!--<TextBox
+                                materialDesign:HintAssist.Hint="Масса вещества"
+                                materialDesign:TextFieldAssist.SuffixText="кг"
+
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                Text="{Binding Massa}">
+                                
+                            </TextBox>-->
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Время"
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                Text="{Binding Time}">
+
+                                    </TextBox>
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Дата"
+                                materialDesign:TextFieldAssist.SuffixText=""
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"  >
+                                        <TextBox.Text>
+                                            <Binding Path="Date" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateMoreThanZero/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <!--<TextBox
+                                materialDesign:HintAssist.Hint="Стехиометрическая концентрация вещества"
+                                materialDesign:TextFieldAssist.SuffixText="кг/м^3"
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" Text="{Binding Scv}" >
+                                
+                            </TextBox>-->
+
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Концентрация вещества в объекте"
+                                materialDesign:TextFieldAssist.SuffixText="%"
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" >
+                                        <TextBox.Text>
+                                            <Binding Path="Kv" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateMoreThanZero/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+
+                                </StackPanel>
+
+
+                            </Grid>
+                        </GroupBox>
+
+
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" >
+                    <StackPanel VerticalAlignment="Top"  
+                  >
+                        <GroupBox VerticalAlignment=" Top" FontSize="20" >
+                            <GroupBox.Header>
+                                <Viewbox Width="auto">
+                                    <Label Background="White" Width="350">
+                                        НС в объекте
+                                    </Label>
+
+                                </Viewbox>
+                            </GroupBox.Header>
+                            <Grid>
+
+                                <StackPanel>
+
+                                    <ComboBox
+                                Margin="5"
+                                materialDesign:HintAssist.Hint="Воздух"
+                                 HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="airCombo"
+                                ItemsSource="{Binding Airr}" SelectedItem="{Binding SelectedAir}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <ComboBox
+                                Margin="5"
+                                materialDesign:HintAssist.Hint="Грунт"
+                                 HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="primCombo"
+                                ItemsSource="{Binding Pri}" SelectedItem="{Binding SelectedPri}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <ComboBox
+                                Margin="5"
+                                materialDesign:HintAssist.Hint="Нештатная ситуация"
+                                 HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="emerCombo"
+                                ItemsSource="{Binding Es}" SelectedItem="{Binding SelectedEs}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <ComboBox
+                                         Margin="5"
+                                         materialDesign:HintAssist.Hint="Наблюдатель"
+                                          HorizontalAlignment="Stretch"
+                                         VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="watchCombo"
+                                         ItemsSource="{Binding Watchers}" SelectedItem="{Binding SelectedWatcher}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Температура"
+                                materialDesign:TextFieldAssist.SuffixText="°С"
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"  >
+                                        <TextBox.Text>
+                                            <Binding Path="Temper" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateInt/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Шаг измерения"
+                                materialDesign:TextFieldAssist.SuffixText="м"
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"  >
+                                        <TextBox.Text>
+                                            <Binding Path="Step" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateMoreThanZero/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Координата эпицентра по Х"
+                                materialDesign:TextFieldAssist.SuffixText=""
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"  >
+                                        <TextBox.Text>
+                                            <Binding Path="XSituation" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateNullAndMore/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+
+                                    </TextBox>
+                                    <TextBox
+                                 materialDesign:HintAssist.Hint="Координата эпицентра по Y"
+                                 materialDesign:TextFieldAssist.SuffixText=""
+                                 Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"  >
+                                        <TextBox.Text>
+                                            <Binding Path="YSituation" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateNullAndMore/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBox
+                                materialDesign:HintAssist.Hint="Координата наблюдателя по X"
+                                materialDesign:TextFieldAssist.SuffixText=""
+                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"  >
+                                        
+                                        <TextBox.Text>
+                                            <Binding Path="XWatcher" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateNullAndMore/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBox
+                               materialDesign:HintAssist.Hint="Координата наблюдателя по Y"
+                               materialDesign:TextFieldAssist.SuffixText=""
+                               Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                               VerticalContentAlignment="Center"  >
+                                       
+                                        <TextBox.Text>
+                                            <Binding Path="YWatcher" ConverterCulture="ru-RU">
+                                                <Binding.ValidationRules>
+                                                    <rules:ValidateNullAndMore/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </StackPanel>
+
+
+                            </Grid>
+                        </GroupBox>
+
+
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button 
+          Content="Эксперимент" Margin="5"
+          Background="White" BorderBrush="#42b445 " Foreground="Black"
+          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding ResultCommand}"
+          Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
+                </Viewbox>
+            </Grid>
+            <!--<Grid Grid.Row="4">
+                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button
+                         Command="{Binding RetCommand}"
+                         Margin="7"
+                         Background="#D6FDD3" BorderBrush="#42b445 " Content="Назад"
+                         Foreground="Black">
+                    </Button>
+                </Viewbox>
+            </Grid>-->
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="1">
+
+            <materialDesign:Card  Foreground="Black">
+                <TabControl
+                    HorizontalContentAlignment="Center"
+                    Foreground="Black"
+                   
+                    >
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock  Foreground="Black" FontSize="20">
+                                Радиусы поражения на объекте
+
+                            </TextBlock>
+                        </TabItem.Header>
+
+                        <Frame Content="{Binding VisualizationViewModel.Chart2DWindow}" NavigationUIVisibility="Hidden" />
+                        <!--<Viewport3D Grid.Row="1">
+                            <Viewport3D.Camera>
+                                <PerspectiveCamera Position="0.5,0.5,5.5" LookDirection="0,0,-3.5"  />
+                            </Viewport3D.Camera>
+                            <Viewport3D.Children>
+                                <ModelVisual3D>
+                                    <ModelVisual3D.Content>
+                                        <DirectionalLight Color="White" Direction="-1,-1,-2" />
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D>
+                                    <ModelVisual3D.Content>
+                                        <GeometryModel3D>
+                                            <GeometryModel3D.Geometry>
+                                                <MeshGeometry3D Positions="0,0,0 1,0,0 0,1,0 1,1,0 
+                                                                      0,0,1 1,0,1 0,1,1 1,1,1"
+                                                 TriangleIndices="0,2,1 1,2,3 0,4,2 2,4,6 
+                                                                  0,1,4 1,5,4 1,7,5 1,3,7
+                                                                  4,5,6 7,6,5 2,6,3 3,6,7"/>
+                                            </GeometryModel3D.Geometry>
+                                            <GeometryModel3D.Material>
+                                                <DiffuseMaterial Brush="Green" />
+                                            </GeometryModel3D.Material>
+                                        </GeometryModel3D>
+                                    </ModelVisual3D.Content>
+                                    <ModelVisual3D.Transform>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="rotate" Axis="0 1 0" />
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                    </ModelVisual3D.Transform>
+                                </ModelVisual3D>
+                            </Viewport3D.Children>
+                        </Viewport3D>-->
+
+                    </TabItem>
+                    <!--<TabItem
+                        Foreground="Black"
+      Header="Радиусы поражения на карте">
+                         </TabItem>-->
+
+                </TabControl>
+            </materialDesign:Card>
+        </Grid>
+
+        <Grid Grid.Column="3" Grid.Row="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="8*" />
+
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                
+                    <Label Margin ="5" FontSize="20" Background="White" BorderThickness="4" Foreground="Black"  >
+                    Результат:
+                </Label>
+                   
+            </Grid>
+            <Grid Grid.Row="1">
+
+                <Grid >
+
+                    <StackPanel Margin="10">
+
+                        <Label
+   
+                           Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+                           VerticalContentAlignment="Center" 
+                             HorizontalContentAlignment="Center"
+                             FontSize="15"
+                            
+                           >
+                            Расстояние от эпицентра взрыва, м:
+                        </Label>
+                        <TextBox
+                              Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                              VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                              IsReadOnly="True" 
+                              Text="{Binding DistanceE}">
+
+                        </TextBox>
+                        <Label
+   
+    Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+    VerticalContentAlignment="Center" 
+      HorizontalContentAlignment="Center"
+      FontSize="15"
+    >
+                            Вероятность потери ориентации, %:
+                        </Label>
+                        <TextBox
+                                 
+                                 Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                                 IsReadOnly="True" 
+                                 Text="{Binding Orientation}">
+
+                        </TextBox>
+                        <Label
+   
+Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+VerticalContentAlignment="Center" 
+  HorizontalContentAlignment="Center"
+  FontSize="15"
+>
+                            Разрыв барабанных перепонок, %:
+                        </Label>
+                        <TextBox
+                                Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                                IsReadOnly="True" 
+                                Text="{Binding Eardrumms}">
+
+                        </TextBox>
+                        <Label
+   
+Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+VerticalContentAlignment="Center" 
+  HorizontalContentAlignment="Center"
+  FontSize="15"
+>
+                            Отброс ударной волной, %:
+                        </Label>
+                        <TextBox
+                                Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                                IsReadOnly="True" 
+                                Text="{Binding ThrowWay}">
+
+                        </TextBox>
+                        <Label
+   
+Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+VerticalContentAlignment="Center" 
+  HorizontalContentAlignment="Center"
+  FontSize="15"
+>
+                            Поражение органов дыхания:
+                        </Label>
+                        <TextBox
+                                
+                                Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                                IsReadOnly="True" 
+                                Text="{Binding ResperatorsOrgan}">
+
+                        </TextBox>
+                        <Label
+   
+Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+VerticalContentAlignment="Center" 
+  HorizontalContentAlignment="Center"
+  FontSize="15"
+>
+                            Степень поражения:
+                        </Label>
+                        <TextBox
+                                Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                                IsReadOnly="True" 
+                                Text="{Binding DegreeOfDamage}">
+
+                        </TextBox>
+                        <Label
+   
+Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
+VerticalContentAlignment="Center" 
+  HorizontalContentAlignment="Center"
+  FontSize="15"
+>
+                            Избыточное давление, кПа:
+                        </Label>
+                        <TextBox
+                                Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
+                                VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="#42b445"
+                                BorderThickness="1"
+                                IsReadOnly="True" 
+                                Text="{Binding Pressure}">
+
+                        </TextBox>
+
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        <Button
+                             Command="{Binding SaveResCommand}"
+                             Margin="10"
+                             Background="White" BorderBrush="#42b445 " Content="Сохранить результаты"
+                             Foreground="Black">
+                        </Button>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                        <Button
+                            Command="{Binding SaveParCommand}"
+                            Margin="10"
+                            Background="White" BorderBrush="#42b445 " Content="Сохранить параметры"
+                            Foreground="Black">
+                        </Button>
+                    </Viewbox>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>
