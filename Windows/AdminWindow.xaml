@@ -19,7 +19,7 @@
         <dbTables:EnvironmentViewModel x:Key="EnvModel"/>
         <dbTables:WatcherViewModel x:Key="WatModel"/>
         <dbTables:AdminViewModel x:Key="AdminModel"/>
-        <dbTables:GlossaryTabViewModel x:Key="GlossaryModel"/>
+        
     </Window.Resources>
 
     <Grid>
@@ -568,7 +568,7 @@
             </TabItem>
             <TabItem  Name="Glossary"
            MinWidth="240"
-           DataContext="{StaticResource GlossaryModel}" 
+           DataContext="{StaticResource UserModel}" 
                       >
                 <TabItem.Header>
                     <StackPanel
@@ -623,7 +623,7 @@
 
                     </Grid>
 
-                    <GroupBox Grid.RowSpan="2" Grid.ColumnSpan="3"  Grid.Column="1" Grid.Row="1">
+                    <!--<GroupBox Grid.RowSpan="2" Grid.ColumnSpan="3"  Grid.Column="1" Grid.Row="1">
                         <GroupBox.Header >
                             <Viewbox Height="30">
 
@@ -645,7 +645,7 @@
                  HorizontalScrollBarVisibility="Disabled"
                  VerticalScrollBarVisibility="Auto"  >
 
-                            <ListBox ItemsSource="{Binding GlossaryModel}" x:Name="" >
+                            <ListBox ItemsSource="{Binding}" x:Name="" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Viewbox>
@@ -729,7 +729,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </ScrollViewer>
-                    </GroupBox>
+                    </GroupBox>-->
                     
 
 
