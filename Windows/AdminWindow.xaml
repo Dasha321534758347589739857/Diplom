@@ -10,7 +10,7 @@
         WindowState="Maximized"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="800" Width="1200" Background="#D6FDD3">
+        Title="AdminWindow" Height="800" Width="1200" >
 
     <Window.Resources>
         <dbTables:UsersTabViewModel x:Key="UserModel"/>
@@ -19,6 +19,7 @@
         <dbTables:EnvironmentViewModel x:Key="EnvModel"/>
         <dbTables:WatcherViewModel x:Key="WatModel"/>
         <dbTables:AdminViewModel x:Key="AdminModel"/>
+        <dbTables:GlossaryTabViewModel x:Key="GlossaryModel"/>
     </Window.Resources>
 
     <Grid>
@@ -42,7 +43,7 @@
                 >
 
                 <Button
-                     Background="LightGreen"
+                     
                      CommandParameter="{Binding ElementName=this}"
                      Command="{Binding OpenMainCommand}"
                    Margin="10"
@@ -83,7 +84,7 @@
                  DataContext="{StaticResource UserModel}"
         >
                 <Button
-                Background="LightGreen"
+                
                         Margin="6"
                 Command="{Binding OpenEditKeyCommand}"
                          HorizontalAlignment="Right" Cursor="Hand">
@@ -98,7 +99,7 @@
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TabStripPlacement="Top"
-                    Background="LightGreen"
+                   
                     Foreground="Black"
                     Style="{StaticResource MaterialDesignNavigationRailTabControl}" x:Name="dataTab" Grid.ColumnSpan="3" Margin="0,52,0,0" Grid.RowSpan="2" 
                     >
@@ -125,7 +126,7 @@
 
                 </TabItem.Header>
 
-                <Grid Background="#D6FDD3">
+                <Grid >
 
 
 
@@ -139,7 +140,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
 
-                            <materialDesign:Card Margin="3" Background="#D6FDD3" >
+                            <materialDesign:Card Margin="3"  >
                                 <GroupBox Margin="4" Width="450" Height="650">
 
 
@@ -158,16 +159,17 @@
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Viewbox MinHeight="35">
-                                                        <StackPanel Orientation="Horizontal" Background="LightGreen">
+                                                        <StackPanel Orientation="Horizontal" >
                                                             <TextBox 
                                                                 MinWidth="200"
-                                                               materialDesign:HintAssist.Hint="Логин"
+                                                               materialDesign:HintAssist.Hint="Имя"
                                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                                HorizontalContentAlignment="Center"
                                                                Margin="5"
                                                                VerticalAlignment="Center"
                                                                VerticalContentAlignment="Center"
                                                                Text="{Binding Name}" />
+                                                           
 
                                                             <PasswordBox
                                                               Margin="5"
@@ -193,6 +195,21 @@
                                                                   Height="10"
                                                                   Kind="CloseThick"  />
                                                             </Button>
+                                                            <Button
+                                                                  Margin="3,0"
+                                                                  Command="{Binding SaveUserCommand, Source={StaticResource UserModel}}"
+                                                                  CommandParameter="{Binding }"
+                                                                  VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Center"
+                                                                  Width="15"
+                                                                  Height="15"
+                                                                  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                                <materialDesign:PackIcon
+                                                                      Width="10"
+                                                                      Height="10"
+                                                                      Kind="Check"  />
+                                                            </Button>
                                                         </StackPanel>
                                                     </Viewbox>
                                                 </DataTemplate>
@@ -206,7 +223,7 @@
 
 
                         <Grid Grid.Column="1">
-                            <materialDesign:Card Margin="3" Background="#D6FDD3">
+                            <materialDesign:Card Margin="3" >
                                 <GroupBox
                                     Margin="4"
                                     Width="450" Height="650">
@@ -222,7 +239,7 @@
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Viewbox MinHeight="25">
-                                                        <StackPanel Orientation="Horizontal" Background="LightGreen">
+                                                        <StackPanel Orientation="Horizontal" >
                                                             <TextBox 
                                                                 MinWidth="200"
                                                                  materialDesign:HintAssist.Hint="Имя"
@@ -232,15 +249,7 @@
                                                                  VerticalAlignment="Center"
                                                                  
                                                                  Text="{Binding Name}" />
-                                                            <TextBox 
-                                                                 MinWidth="200"
-                                                                  materialDesign:HintAssist.Hint="Логин"
-                                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                                                  HorizontalContentAlignment="Center"
-                                                                  Margin="5"
-                                                                  VerticalAlignment="Center"
-      
-                                                                  Text="{Binding Login}" />
+                                                            
 
                                                             <PasswordBox
                                                                 Margin="5"
@@ -271,6 +280,21 @@
                                                                 Height="10"
                                                                 Kind="CloseThick" />
                                                             </Button>
+                                                            <Button
+      Margin="3,0"
+      Command="{Binding SaveUserCommand, Source={StaticResource UserModel}}"
+      CommandParameter="{Binding }"
+      VerticalAlignment="Center"
+      HorizontalAlignment="Center"
+      Width="15"
+      Height="15"
+      Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                                <materialDesign:PackIcon
+          Width="10"
+          Height="10"
+          Kind="Check"  />
+                                                            </Button>
                                                         </StackPanel>
                                                     </Viewbox>
                                                 </DataTemplate>
@@ -295,7 +319,7 @@
                                     Margin="20"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
                                     VerticalAlignment="Top"
-                                    Background="LightGreen" BorderBrush="#42b445 "
+                                     
                                     Content="Добавить пользователя"
                                     Command="{Binding AddUserCommand}"  Foreground="Black">
 
@@ -326,7 +350,7 @@
                               Text="Вещества" />
                     </StackPanel>
                 </TabItem.Header>
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#D6FDD3">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.15*"/>
                         <RowDefinition />
@@ -358,7 +382,7 @@
                                    HorizontalAlignment="Center"  
                                         Cursor="Hand"
                                         Command="{Binding AddSubstanceCommand}"
-                                   Background="LightGreen" BorderBrush="#42b445 " Foreground="Black"
+                                  Foreground="Black"
                                         />
                         </Viewbox>
 
@@ -393,7 +417,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Viewbox>
-                                            <StackPanel Orientation="Horizontal" Background="LightGreen" >
+                                            <StackPanel Orientation="Horizontal"  >
                                                 <TextBox 
                                                     MinWidth="300"
                                                     materialDesign:HintAssist.Hint="Название"
@@ -452,6 +476,21 @@
                                                    Height="10"
                                                    Kind="CloseThick"  />
                                                 </Button>
+                                                <Button
+                                                  Margin="3,0"
+                                                  Command="{Binding EditSubstanceCommand, Source={StaticResource SubModel}}"
+                                                  CommandParameter="{Binding }"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  Width="15"
+                                                  Height="15"
+                                                  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                    <materialDesign:PackIcon
+                                                      Width="10"
+                                                      Height="10"
+                                                      Kind="Check"  />
+                                                </Button>
                                             </StackPanel>
                                         </Viewbox>
                                     </DataTemplate>
@@ -469,13 +508,13 @@
                             <ListBox x:Name="propList" ItemsSource="{Binding SubstanceInAnObjectss}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <DockPanel Margin="5" Background="LightGreen">
+                                        <DockPanel Margin="5" >
                                             <TextBox
                                                  IsReadOnly="True"
                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                  materialDesign:HintAssist.Hint="Название"
                                                  Margin="5,0,5,20"
-                                                  MinWidth="200"
+                                                  MinWidth="500"
                                                  Text="{Binding Path=Substance.Name}"
                                                  VerticalAlignment="Center" />
 
@@ -484,34 +523,20 @@
                                                  materialDesign:HintAssist.Hint="Масса"
                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                 Margin="5,0,5,20"
-                                                MinWidth="200"
+                                                MinWidth="400"
                                                  Text="{Binding Path=Mass}"
                                                  VerticalAlignment="Center" />
                                             <TextBox
-                                                 materialDesign:HintAssist.Hint="Время"
+                                                 materialDesign:HintAssist.Hint="Концентрация вещества"
                                                  materialDesign:TextFieldAssist.SuffixText="{Binding Path=Property.Mass}"
                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                  Margin="5,0,5,20"
-                                                 MinWidth="200"
-                                                 Text="{Binding Path=User.Name}"
+                                                 MinWidth="250"
+                                                 Text="{Binding Path=COASIAO}"
                                                  VerticalAlignment="Center"  />
                                            
 
-                                            <TextBox
-                                                 IsReadOnly="True"
-                                                 materialDesign:HintAssist.Hint="Обозначение"
-                                                Margin="5,0,5,20"
-                                                MinWidth="100"
-                                                 Text="{Binding Path=SCOASIA}"
-                                                 VerticalAlignment="Center" />
                                            
-                                            <TextBox
-                                                 IsReadOnly="True"
-                                                 materialDesign:HintAssist.Hint="Обозначение"
-                                                Margin="5,0,5,20"
-                                                MinWidth="100"
-                                                 Text="{Binding Path=COASIAO}"
-                                                 VerticalAlignment="Center" />
                                             <Button
                                                     Margin="5,0"
                                                     Command="{Binding DeleteSubstanceInAnObjectCommand, Source={StaticResource SubModel}}"
@@ -541,6 +566,178 @@
 
                 </Grid>
             </TabItem>
+            <TabItem  Name="Glossary"
+           MinWidth="240"
+           DataContext="{StaticResource GlossaryModel}" 
+                      >
+                <TabItem.Header>
+                    <StackPanel
+   Width="auto"
+   Height="auto">
+
+                        <TextBlock
+                   FontSize="13"
+                   HorizontalAlignment="Center"
+                  
+                   Text="Справочник веществ" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="0.15*"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0,35" />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2,35"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="4" Grid.Row="1">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="2*"/>
+
+                        </Grid.RowDefinitions>
+
+
+                        <Viewbox VerticalAlignment="Top" >
+
+                            <Button Margin="20" materialDesign:ButtonAssist.CornerRadius="0" Style="{StaticResource MaterialDesignRaisedButton}" Content="Добавить"
+                        HorizontalAlignment="Center"  
+                             Cursor="Hand"
+                             Command="{Binding }"
+                       Foreground="Black"
+                             />
+                        </Viewbox>
+
+
+
+
+                    </Grid>
+
+                    <GroupBox Grid.RowSpan="2" Grid.ColumnSpan="3"  Grid.Column="1" Grid.Row="1">
+                        <GroupBox.Header >
+                            <Viewbox Height="30">
+
+
+
+
+
+
+                                <Label
+                               
+                               ToolTip="MaterialDesignFloatingActionSecondaryLightButton"
+                               HorizontalAlignment="Center" 
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                         Foreground="Black">Справочник веществ</Label>
+                            </Viewbox>
+                        </GroupBox.Header>
+                        <ScrollViewer 
+                 HorizontalScrollBarVisibility="Disabled"
+                 VerticalScrollBarVisibility="Auto"  >
+
+                            <ListBox ItemsSource="{Binding GlossaryModel}" x:Name="" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Viewbox>
+                                            <StackPanel Orientation="Horizontal"  >
+                                                <TextBox 
+                                         MinWidth="300"
+                                         materialDesign:HintAssist.Hint="Название"
+                                         HorizontalContentAlignment="Center"
+                                         Margin="5,0,6,0"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding Name}" 
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                                              />
+
+
+                                                <TextBox 
+                                         MinWidth="300"
+                                         materialDesign:HintAssist.Hint="Агрегатное состояние"
+                                         HorizontalContentAlignment="Center"
+                                         Margin="5,0,6,0"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding StateOfAggregation}"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                                                <TextBox MinWidth="100"
+                                         materialDesign:HintAssist.Hint="Плотность, кг/м^3"
+                                         HorizontalContentAlignment="Center"
+                                         Margin="5,0,6,0"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding Density}"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         />
+
+
+
+                                                <TextBox MinWidth="100"
+                                         materialDesign:HintAssist.Hint="Класс опасности"
+                                         HorizontalContentAlignment="Center"
+                                         Margin="5,0,6,0"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding HazardClass}"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                                                <Button
+                                        Margin="3,0"
+                                        Command="{Binding DeleteSubstanceCommand, Source={StaticResource SubModel}}"
+                                        CommandParameter="{Binding }"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="15"
+                                        Height="15"
+                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                    <materialDesign:PackIcon
+                                        Width="10"
+                                        Height="10"
+                                        Kind="CloseThick"  />
+                                                </Button>
+                                                <Button
+                                       Margin="3,0"
+                                       Command="{Binding EditSubstanceCommand, Source={StaticResource SubModel}}"
+                                       CommandParameter="{Binding }"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Width="15"
+                                       Height="15"
+                                       Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                    <materialDesign:PackIcon
+                                           Width="10"
+                                           Height="10"
+                                           Kind="Check"  />
+                                                </Button>
+                                            </StackPanel>
+                                        </Viewbox>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ScrollViewer>
+                    </GroupBox>
+                    
+
+
+
+
+
+                </Grid>
+            </TabItem>
             <TabItem  Name="propertiesTab"
                       MinWidth="240">
                 <TabItem.Header>
@@ -555,7 +752,7 @@
                  Text="Объекты" />
                     </StackPanel>
                 </TabItem.Header>
-                <Grid Background="#D6FDD3">
+                <Grid >
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
@@ -575,7 +772,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
 
-                            <materialDesign:Card Margin="3" Background="#D6FDD3" >
+                            <materialDesign:Card Margin="3" >
                                 <GroupBox DataContext="{StaticResource ObjModel}" >
 
 
@@ -603,40 +800,34 @@
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Viewbox>
-                                                        <StackPanel Orientation="Horizontal" Background="LightGreen">
+                                                        <StackPanel Orientation="Horizontal" >
 
-                                                            <TextBox MinWidth="300"
+                                                            <TextBox MinWidth="500"
                                                             materialDesign:HintAssist.Hint="Название"
                                                             HorizontalContentAlignment="Center"
                                                             Margin="5,0,6,0"
                                                             VerticalAlignment="Center"
                                                             VerticalContentAlignment="Center"
                                                             Text="{Binding EmergencySituation.Name}" />
-                                                            <TextBox MinWidth="100"
+                                                            
+                                                            <TextBox MinWidth="200"
                                                             materialDesign:HintAssist.Hint="Обозначение"
 
                                                             HorizontalContentAlignment="Center"
                                                             Margin="5"
                                                             VerticalAlignment="Center"
                                                             VerticalContentAlignment="Center"
-                                                            Text="{Binding Objectt.Name}" />
+                                                            Text="{Binding SubstanceInAnObject.Objectt.Name}" />
 
-                                                            <TextBox MinWidth="100"
-                                                            materialDesign:HintAssist.Hint="Еденицы измерения"
-                                         
-                                                            HorizontalContentAlignment="Center"
-                                                            Margin="5"
-                                                            VerticalAlignment="Center"
-                                                            VerticalContentAlignment="Center"
-                                                            Text="{Binding Temperature}" />
-                                                           
-                                                            <TextBox MinWidth="300"
+          
+                                                            <TextBox MinWidth="200"
                                                             materialDesign:HintAssist.Hint="Название"
                                                             HorizontalContentAlignment="Center"
                                                             Margin="5,0,6,0"
                                                             VerticalAlignment="Center"
                                                             VerticalContentAlignment="Center"
                                                             Text="{Binding StepMeasurement}" />
+                                                            
 
                                                             <Button
                                                                Margin="3,0"
@@ -688,7 +879,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Viewbox MinHeight="35">
-                                                    <StackPanel Orientation="Horizontal" Background="LightGreen"  >
+                                                    <StackPanel Orientation="Horizontal"  >
 
                                                         <TextBox MinWidth="100"
                                                             materialDesign:HintAssist.Hint="Название"
@@ -743,7 +934,7 @@
 
 
                         <Grid Grid.Column="0">
-                            <materialDesign:Card Margin="3" Background="#D6FDD3" >
+                            <materialDesign:Card Margin="3"  >
                                 <GroupBox  DataContext="{StaticResource ObjModel}">
 
 
@@ -772,7 +963,7 @@
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Viewbox>
-                                                        <StackPanel Orientation="Horizontal" Background="LightGreen"  MinHeight="40" Margin="2">
+                                                        <StackPanel Orientation="Horizontal"   MinHeight="40" Margin="2">
                                                             
                                                             <TextBox MinWidth="200"
                                                             materialDesign:HintAssist.Hint="Название"
@@ -815,19 +1006,20 @@
                                                             VerticalAlignment="Center"
                                                             Text="{Binding DistanceFromSurface}" />
                                                             
-                                                            <TextBox MinWidth="200"
+                                                            <TextBox MinWidth="100"
+                                                            IsReadOnly="True"
                                                             materialDesign:HintAssist.Hint="Материал"
                                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
-                                                                     Margin="5,0,6,0"
+                                                            Margin="5,0,6,0"
                                                             VerticalAlignment="Center"
                                                             Text="{Binding Fabric.Name}" />
 
-                                                            <TextBox MinWidth="200"
+                                                            <TextBox MinWidth="100"
                                                             materialDesign:HintAssist.Hint="Загромождённость"
                                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
-                                                                     Margin="5,0,6,0"
+                                                            Margin="5,0,6,0"
                                                            VerticalAlignment="Center"
                                                             Text="{Binding Clutter}" />
                                                             <Button
@@ -844,6 +1036,21 @@
                                                                    Width="10"
                                                                    Height="10"
                                                                    Kind="CloseThick"  />
+                                                            </Button>
+                                                            <Button
+                                                                  Margin="3,0"
+                                                                  Command="{Binding EditObjectCommand, Source={StaticResource ObjModel}}"
+                                                                  CommandParameter="{Binding }"
+                                                                  VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Center"
+                                                                  Width="15"
+                                                                  Height="15"
+                                                                  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                                <materialDesign:PackIcon
+                                                                  Width="10"
+                                                                  Height="10"
+                                                                  Kind="Check"  />
                                                             </Button>
                                                         </StackPanel>
                                                     </Viewbox>
@@ -868,7 +1075,7 @@
                                 Margin="15"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
                                 VerticalAlignment="Top"
-                                Background="LightGreen" BorderBrush="#42b445 "
+                                
                                 Content="Добавить объект"
                                 Cursor="Hand"
                                 Command="{Binding AddObjectCommand}"
@@ -881,7 +1088,7 @@
                                     Margin="15"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
                                     VerticalAlignment="Top"
-                                    Background="LightGreen" BorderBrush="#42b445 "
+                                    
                                     Content="Добавить материал"
                                     Cursor="Hand"
                                     Command="{Binding AddMaterialCommand}"
@@ -913,7 +1120,7 @@
                  Text="Окружение" />
                     </StackPanel>
                 </TabItem.Header>
-                <Grid Background="#D6FDD3">
+                <Grid >
 
 
                     <Grid.ColumnDefinitions>
@@ -957,7 +1164,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Viewbox MinHeight="35">
-                                                    <StackPanel Orientation="Horizontal" Background="LightGreen"  >
+                                                    <StackPanel Orientation="Horizontal"  >
 
                                                         <TextBox MinWidth="200"
                                                             materialDesign:HintAssist.Hint="Название"
@@ -994,6 +1201,21 @@
                                                                        Width="10"
                                                                        Height="10"
                                                                        Kind="CloseThick" />
+                                                        </Button>
+                                                        <Button
+                                                               Margin="3,0"
+                                                               Command="{Binding EditAirCommand, Source={StaticResource EnvModel}}"
+                                                               CommandParameter="{Binding }"
+                                                               VerticalAlignment="Center"
+                                                               HorizontalAlignment="Center"
+                                                               Width="15"
+                                                               Height="15"
+                                                               Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                            <materialDesign:PackIcon
+                                                               Width="10"
+                                                               Height="10"
+                                                               Kind="Check"  />
                                                         </Button>
                                                     </StackPanel>
                                                 </Viewbox>
@@ -1036,7 +1258,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Viewbox MinHeight="40" >
-                                                    <StackPanel Orientation="Horizontal"  Background="LightGreen"  >
+                                                    <StackPanel Orientation="Horizontal"   >
 
                                                         <TextBox MinWidth="300"
                                                             materialDesign:HintAssist.Hint="Название"
@@ -1052,11 +1274,8 @@
                                                                Margin="3,0"
                                                                 Command="{Binding DeleteEmerCommand, Source={StaticResource EnvModel}}"
                                                                CommandParameter="{Binding }"
-
                                                                Width="15"
                                                                Height="15"
-
-
                                                                VerticalAlignment="Center"
                                                                HorizontalAlignment="Center"
                                                                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
@@ -1066,6 +1285,21 @@
                                                                    Width="10"
                                                                    Height="10"
                                                                    Kind="CloseThick" />
+                                                        </Button>
+                                                        <Button
+                                                               Margin="3,0"
+                                                               Command="{Binding EditESCommand, Source={StaticResource EnvModel}}"
+                                                               CommandParameter="{Binding }"
+                                                               VerticalAlignment="Center"
+                                                               HorizontalAlignment="Center"
+                                                               Width="15"
+                                                               Height="15"
+                                                               Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                            <materialDesign:PackIcon
+                                                               Width="10"
+                                                               Height="10"
+                                                               Kind="Check"  />
                                                         </Button>
                                                     </StackPanel>
                                                 </Viewbox>
@@ -1112,7 +1346,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Viewbox MinHeight="35" >
-                                                    <StackPanel Orientation="Horizontal" Background="LightGreen" >
+                                                    <StackPanel Orientation="Horizontal"  >
 
                                                         <TextBox MinWidth="200"
                                                             materialDesign:HintAssist.Hint="Название"
@@ -1133,7 +1367,7 @@
                                                             VerticalContentAlignment="Center"
                                                             Text="{Binding Density}" />
 
-                                                        <TextBox MinWidth="200"
+                                                        <TextBox MinWidth="100"
                                                             materialDesign:HintAssist.Hint="Тип"
                                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
@@ -1160,6 +1394,21 @@
                                                                Width="10"
                                                                Height="10"
                                                                Kind="CloseThick" />
+                                                        </Button>
+                                                        <Button
+                                                          Margin="3,0"
+                                                          Command="{Binding EditPrimingCommand, Source={StaticResource EnvModel}}"
+                                                          CommandParameter="{Binding }"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"
+                                                          Width="15"
+                                                          Height="15"
+                                                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                            <materialDesign:PackIcon
+                                                              Width="10"
+                                                              Height="10"
+                                                              Kind="Check"  />
                                                         </Button>
                                                     </StackPanel>
                                                 </Viewbox>
@@ -1191,7 +1440,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Viewbox>
-                                                    <StackPanel Orientation="Horizontal" Background="LightGreen" Height="20">
+                                                    <StackPanel Orientation="Horizontal"  Height="20">
 
                                                         <TextBox MinWidth="300"
                                                    materialDesign:HintAssist.Hint="Название"
@@ -1270,7 +1519,7 @@
                                  Margin="15"
                                  Style="{StaticResource MaterialDesignRaisedButton}"
                                  VerticalAlignment="Top"
-                                 Background="LightGreen" BorderBrush="#42b445 "
+                                 
                                  Content="Добавить грунт"
                                   Command="{Binding AddPrimingCommand}" Foreground="Black">
 
@@ -1282,7 +1531,7 @@
                                  Margin="15"
                                  Style="{StaticResource MaterialDesignRaisedButton}"
                                  VerticalAlignment="Top"
-                                 Background="LightGreen" BorderBrush="#42b445 "
+                                 
                                  Content="Добавить нс"
                                 Command="{Binding AddEmergencySituationCommand}"  Foreground="Black" Cursor="Hand">
 
@@ -1294,7 +1543,7 @@
                                  Margin="15"
                                  Style="{StaticResource MaterialDesignRaisedButton}"
                                  VerticalAlignment="Top"
-                                 Background="LightGreen" BorderBrush="#42b445 "
+                                 
                                  Content="Добавить воздух"
                                  Command="{Binding AddAirCommand}" Foreground="Black">
 
@@ -1319,7 +1568,7 @@
                     </StackPanel>
 
                 </TabItem.Header>
-                <Grid Background="#D6FDD3" DataContext="{StaticResource WatModel}">
+                <Grid DataContext="{StaticResource WatModel}">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.15*"/>
@@ -1359,7 +1608,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Viewbox MaxHeight="35" >
-                                                    <StackPanel Orientation="Horizontal" Background="LightGreen"  >
+                                                    <StackPanel Orientation="Horizontal"  >
 
                                                         <TextBox MinWidth="450"
                                                             materialDesign:HintAssist.Hint="Название"
@@ -1399,6 +1648,21 @@
                                                                        Height="10"
                                                                        Kind="CloseThick" />
                                                         </Button>
+                                                        <Button
+                                                           Margin="3,0"
+                                                           Command="{Binding EditWatcherCommand, Source={StaticResource EnvModel}}"
+                                                           CommandParameter="{Binding }"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center"
+                                                           Width="15"
+                                                           Height="15"
+                                                           Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                                                            <materialDesign:PackIcon
+                                                               Width="10"
+                                                               Height="10"
+                                                               Kind="Check"  />
+                                                        </Button>
                                                     </StackPanel>
                                                 </Viewbox>
                                             </DataTemplate>
@@ -1412,7 +1676,7 @@
                           Margin="15"
                           Style="{StaticResource MaterialDesignRaisedButton}"
                           VerticalAlignment="Top"
-                          Background="LightGreen" BorderBrush="#42b445 "
+                         
                           Content="Добавить наблюдателя"
                            Command="{Binding AddWatcherCommand}" Foreground="Black">
 

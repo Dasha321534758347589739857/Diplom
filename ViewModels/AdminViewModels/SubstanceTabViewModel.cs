@@ -116,8 +116,14 @@ namespace Diplom.ViewModels.AdminViewModels
             using Context ctx = new Context();
             Substancess = new ObservableCollection<Substance>(ctx.Substances.ToList());
         }
+        [RelayCommand]
+        private void EditSubstance(Substance substance)
+        {
+            using Context ctx = new Context();
 
-
+            ctx.Substances.Update(substance);
+            ctx.SaveChanges();
+        }
 
     }
 }

@@ -133,9 +133,9 @@ namespace Diplom.ViewModels.AdminViewModels
             }
             ctx.EmergencySituationAtTheFacilities.Remove(emergencySituationAtTheFacility);
             ctx.SaveChanges();
-
-            emergencySituationAtTheFacilities = new ObservableCollection<EmergencySituationAtTheFacility>(ctx.EmergencySituationAtTheFacilities.ToList());
-
+            
+                emergencySituationAtTheFacilities = new ObservableCollection<EmergencySituationAtTheFacility>(ctx.EmergencySituationAtTheFacilities.ToList());
+            
 
         }
         public void Receive(NewObjecttMessage message)
@@ -170,5 +170,14 @@ namespace Diplom.ViewModels.AdminViewModels
             Materials = new ObservableCollection<Fabric>(ctx.Materials.ToList());
         }
 
+        [RelayCommand]
+        private void EditObject(Objectt obj)
+        {
+            using Context ctx = new Context();
+
+            ctx.Objectts.Update(obj);
+            ctx.SaveChanges();
+
+        }
     }
 }

@@ -11,8 +11,8 @@ namespace Diplom.ViewModels
 {
     public partial class VisualizationViewModel : ObservableObject
     {
-        private readonly double height;
-        private readonly double weight;
+        public readonly double height;
+        public readonly double weight;
         private readonly List<double> Z;
         private readonly double step;
         private readonly double x0;
@@ -51,7 +51,14 @@ namespace Diplom.ViewModels
             {
                 do
                 {
-                    if (j <= weight && j>=0)
+                    if(i==x0 && j==y0 && j >= 0&& j >= 0)
+                    {
+                        DataX.Add(i);
+                        DataY.Add(j);
+                        DataZ.Add(Z[0]);
+
+                    }
+                    else if (j <= weight && j >= 0)
                     {
                         DataX.Add(i);
                         DataY.Add(j);
@@ -62,7 +69,7 @@ namespace Diplom.ViewModels
                         if (f1 < 0)
                         { f1 = f1 * -1; }
 
-                        if (((f + f1) / step )> Z.Count || ((f + f1) / step)==Z.Count)
+                        if (((f + f1) / step) > Z.Count || ((f + f1) / step) == Z.Count)
                         {
                             DataZ.Add(4.0);
                         }
@@ -70,14 +77,21 @@ namespace Diplom.ViewModels
                         {
                             ess = Math.Round(((f + f1) / step), 0).ToString();
                             es = Int32.Parse(ess);
-                            DataZ.Add(Z[es]);
+                            if (es != 0)
+                            {
+                                DataZ.Add(Z[es - 1]);
+                            }
+                            else 
+                            {
+                                DataZ.Add(Z[1]);
+                            }
                         }
                     }
-                    else 
+                    else
                     {
-                       
+
                         DataY.Add(j);
-                       
+
 
                     }
                     
@@ -85,7 +99,7 @@ namespace Diplom.ViewModels
                 } while (i<= height);
                 j = j + step;
                 i = 0;
-            } while (j<=height);
+            } while (j<=weight);
 
             return (DataX, DataY, DataZ);
         }

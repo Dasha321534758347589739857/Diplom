@@ -24,6 +24,8 @@ using System.Diagnostics.Metrics;
 using System.Reflection.Metadata;
 using Microsoft.Win32;
 using System.Reflection;
+using System.Windows.Controls;
+using System.Windows;
 //using Microsoft.Office.Interop.Excel;
 
 namespace Diplom.ViewModels.UserViewModel
@@ -408,9 +410,6 @@ namespace Diplom.ViewModels.UserViewModel
 
 
 
-
-
-
                 if (Double.Parse(SelectedObject.Height) < Double.Parse(XWatcher))
                 {
                     MessageBox.Show("Длина объекта меньше, чем заданное положение наблюдателя!");
@@ -426,6 +425,10 @@ namespace Diplom.ViewModels.UserViewModel
                 else if (Double.Parse(SelectedObject.Radius) < Double.Parse(YSituation))
                 {
                     MessageBox.Show("Радиус объекта меньше, чем заданное положение нештатной ситуации!");
+                }
+                else if (Double.Parse(SelectedObject.Radius) ==0.0 || Double.Parse(SelectedObject.Height) == 0.0)
+                {
+                    MessageBox.Show("Параметры объекта заданы неверно.");
                 }
                 else
                 {

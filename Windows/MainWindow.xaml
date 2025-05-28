@@ -65,7 +65,7 @@ VerticalContentAlignment="Center"
             <Grid Grid.Column="0">
                 <ComboBox
                     Margin="5"
-                    materialDesign:HintAssist.Hint="Ввод параметров"
+                    materialDesign:HintAssist.Hint="Нештатные ситуации в объекте"
                      HorizontalAlignment="Center"
                     VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="esCombo"
                     ItemsSource="{Binding EmergensySituationInAnObject}" SelectedItem="{Binding SelectedES}"  >
@@ -78,7 +78,7 @@ VerticalContentAlignment="Center"
                 </ComboBox>
             </Grid>
             <Grid Grid.Column="1">
-                <Button 
+                <Button
 Content="Выбрать параметры" Margin="10"
 Background="White" BorderBrush="#42b445 " Foreground="Black"
 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding ChooseCommand}"
@@ -89,7 +89,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
         <Grid Grid.Column="1" Grid.Row="0">
             <ComboBox
             Margin="5"
-            materialDesign:HintAssist.Hint="Ввод параметров"
+            materialDesign:HintAssist.Hint="Вещество в объекте"
              HorizontalAlignment="Center"
             VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="soCombo"
             ItemsSource="{Binding SubstanceInAnObject}" SelectedItem="{Binding SelectedSIO}" >
@@ -123,12 +123,12 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
 
             <Grid Grid.Row="1">
                 <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" >
-                    <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Stretch" 
+                    <StackPanel  MaxWidth="210" VerticalAlignment="Top"  HorizontalAlignment="Stretch" 
                  >
                         <GroupBox VerticalAlignment=" Top"   FontSize="20">
                             <GroupBox.Header >
                                 <Viewbox Width="auto">
-                                    <Label Background="White" Width="350">
+                                    <Label Background="White" Width="300">
                                         Вещество в объекте
                                     </Label>
                                     
@@ -136,17 +136,14 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                             </GroupBox.Header>
 
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="41*"/>
-                                    <ColumnDefinition Width="69*"/>
-                                </Grid.ColumnDefinitions>
+                              
 
                                 <StackPanel Grid.ColumnSpan="2">
                                     <ComboBox
                                  Margin="5"
+                                 FontSize="13"
                                  materialDesign:HintAssist.Hint="Вещество"
-                                  HorizontalAlignment="Stretch"
-                                
+                                 HorizontalAlignment="Stretch"
                                  VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="sCombo"
                                  ItemsSource="{Binding Substances}" SelectedItem="{Binding SelectedSubstance}" >
                                         <ComboBox.ItemTemplate >
@@ -159,6 +156,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                 Margin="5"
                                 materialDesign:HintAssist.Hint="Объект"
                                  HorizontalAlignment="Stretch"
+                                       FontSize="13"
                                 VerticalContentAlignment="Center" VerticalAlignment="Stretch" Name="oCombo"
                                 ItemsSource="{Binding Objectss }" SelectedItem="{Binding SelectedObject}" >
                                         <ComboBox.ItemTemplate>
@@ -178,13 +176,13 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                 Text="{Binding Massa}">
                                 
                             </TextBox>-->
-                                    <TextBox
+                                    <!--<TextBox
                                 materialDesign:HintAssist.Hint="Время"
                                 Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
                                 VerticalContentAlignment="Center" 
-                                Text="{Binding Time}">
+                                Text="{Binding Time}">-->
 
-                                    </TextBox>
+                                    <!--</TextBox>
                                     <TextBox
                                 materialDesign:HintAssist.Hint="Дата"
                                 materialDesign:TextFieldAssist.SuffixText=""
@@ -197,7 +195,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                                 </Binding.ValidationRules>
                                             </Binding>
                                         </TextBox.Text>
-                                    </TextBox>
+                                    </TextBox>-->
                                     <!--<TextBox
                                 materialDesign:HintAssist.Hint="Стехиометрическая концентрация вещества"
                                 materialDesign:TextFieldAssist.SuffixText="кг/м^3"
@@ -208,7 +206,8 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
 
                                     <TextBox
                                 materialDesign:HintAssist.Hint="Концентрация вещества в объекте"
-                                materialDesign:TextFieldAssist.SuffixText="%"
+                                materialDesign:TextFieldAssist.SuffixText="%" 
+                                        FontSize="13"
                                 Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
                                 VerticalContentAlignment="Center" >
                                         <TextBox.Text>

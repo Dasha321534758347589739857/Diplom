@@ -1,0 +1,109 @@
+﻿<Window x:Class="Diplom.Windows.AddGlossaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Diplom.Windows"
+        mc:Ignorable="d"
+        Name="this"
+        Title="AddGlossaryWindow" Height="800" Width="500" Background="#D6FDD3">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+
+            <StackPanel Orientation="Vertical" 
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+
+                <TextBlock
+   
+            Foreground="Black"
+            Text="Добавление справочника вещества"
+           FontSize="20"/>
+
+            </StackPanel>
+
+
+            <Grid Grid.Row="1">
+                <TextBlock  Margin="10" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Error}" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Cursor="">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                
+                
+
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding Beta}" Margin="0,10" materialDesign:HintAssist.Hint="Корректировочный параметр" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            
+            <Grid Grid.Row="2">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding MinConcentration}" Margin="0,10" materialDesign:HintAssist.Hint="Минимальная концентрация" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Text="{Binding MaxConcentration}" Margin="0,10" materialDesign:HintAssist.Hint="Максимальная концентрация" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Foreground="Black"/>
+
+
+                </StackPanel>
+            </Grid>
+            
+           
+            <Grid Grid.Row="0">
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                  <ComboBox
+                             ItemsSource="{Binding Substances}"
+                             SelectedItem="{Binding SelectedSubstance}"
+                             Margin="0"
+                             materialDesign:HintAssist.Hint="Вещество"
+                        FontSize="10"
+                            Background="#D6FDD3" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </StackPanel>
+            
+        </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Viewbox Width="80">
+                <Button 
+                   Command="{Binding OkCommand}"  
+                 Margin="15"
+                 Style="{StaticResource MaterialDesignRaisedButton}"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             Background="#D6FDD3" BorderBrush="Black" Width="45" Height="40">
+                    <materialDesign:PackIcon Kind="ArrowRight" />
+                </Button>
+
+            </Viewbox>
+
+        </Grid>
+
+    </Grid>
+   
+</Window>

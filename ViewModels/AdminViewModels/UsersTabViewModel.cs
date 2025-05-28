@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Diplom.Message;
 using Diplom.ViewModels.ViewModelsData;
 using Diplom.Windows;
+using System.Windows.Media.Media3D;
 
 namespace Diplom.ViewModels.AdminViewModels
 {
@@ -28,7 +29,7 @@ namespace Diplom.ViewModels.AdminViewModels
         private ObservableCollection<User> researchers;
         [ObservableProperty]
         private ObservableCollection<User> admins;
-
+        
 
         public UsersTabViewModel()
         {
@@ -140,5 +141,13 @@ namespace Diplom.ViewModels.AdminViewModels
   
         }
 
+        [RelayCommand]
+        private void SaveUser(User user)
+        {
+            using Context ctx = new Context();
+           
+            ctx.Users.Update(user);
+            ctx.SaveChanges();
+        }
     }
 }

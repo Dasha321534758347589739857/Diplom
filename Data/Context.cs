@@ -20,13 +20,15 @@ namespace Diplom.Data
         public DbSet<Fabric> Materials { get; set; } = null!;
         public DbSet<Objectt> Objectts { get; set; } = null!;
         public DbSet<Priming> Primings { get; set; } = null!;
-
+        public DbSet<Glossary> Glossaries { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<Substance> Substances { get; set; } = null!;
         public DbSet<SubstanceInAnObject> SubstanceInAnObjects { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Watcher> Watchers { get; set; } = null!;
         public DbSet<GrafDate> Point { get; set; } = null!;
+
+
 
         public Context()
         {
