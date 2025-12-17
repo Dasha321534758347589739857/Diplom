@@ -46,6 +46,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings2.Designer.cs</LastGenOutput>
     </None>
+    <None Update="Resources\help.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="dataBase.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
