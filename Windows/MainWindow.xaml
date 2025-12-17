@@ -78,14 +78,44 @@ VerticalContentAlignment="Center"
                 </ComboBox>
             </Grid>
             <Grid Grid.Column="1">
-                <Button
-Content="Выбрать параметры" Margin="10"
+               
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Viewbox>
+                    <Button
+Content="Выбрать" Margin="5"
 Background="White" BorderBrush="#42b445 " Foreground="Black"
 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding ChooseCommand}"
 Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
+                </Viewbox>
+                    </Grid>
+               
+                <Grid Grid.Column="1">
+                    <StackPanel 
+       HorizontalAlignment="Center"
+       Orientation="Horizontal"
+      Margin="5"
+       Width="auto"
+     >
 
+                        <Button
+          
+          CommandParameter="{Binding ElementName=this}"
+          Command="{Binding OpenMainCommand}"
+        Margin="10"
+    >
+                            <materialDesign:PackIcon Kind="Account"/>
+                        </Button>
+
+
+                    </StackPanel>
+                </Grid>
+                </Grid>
             </Grid>
-        </Grid>
         <Grid Grid.Column="1" Grid.Row="0">
             <ComboBox
             Margin="5"
@@ -323,7 +353,8 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                     </TextBox>
                                     <TextBox
                                 materialDesign:HintAssist.Hint="Координата эпицентра по Х"
-                                materialDesign:TextFieldAssist.SuffixText=""
+                                        
+                                materialDesign:TextFieldAssist.SuffixText="м"
                                 Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
                                 VerticalContentAlignment="Center"  >
                                         <TextBox.Text>
@@ -337,7 +368,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                     </TextBox>
                                     <TextBox
                                  materialDesign:HintAssist.Hint="Координата эпицентра по Y"
-                                 materialDesign:TextFieldAssist.SuffixText=""
+                                 materialDesign:TextFieldAssist.SuffixText="м"
                                  Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"  >
                                         <TextBox.Text>
@@ -350,7 +381,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                     </TextBox>
                                     <TextBox
                                 materialDesign:HintAssist.Hint="Координата наблюдателя по X"
-                                materialDesign:TextFieldAssist.SuffixText=""
+                                materialDesign:TextFieldAssist.SuffixText="м"
                                 Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
                                 VerticalContentAlignment="Center"  >
                                         
@@ -364,7 +395,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                     </TextBox>
                                     <TextBox
                                materialDesign:HintAssist.Hint="Координата наблюдателя по Y"
-                               materialDesign:TextFieldAssist.SuffixText=""
+                               materialDesign:TextFieldAssist.SuffixText="м"
                                Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"
                                VerticalContentAlignment="Center"  >
                                        
@@ -407,7 +438,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
             </Grid>-->
         </Grid>
         <Grid Grid.Column="2" Grid.Row="1">
-
+            
             <materialDesign:Card  Foreground="Black">
                 <TabControl
                     HorizontalContentAlignment="Center"
@@ -421,8 +452,8 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
 
                             </TextBlock>
                         </TabItem.Header>
-
-                        <Frame Content="{Binding VisualizationViewModel.Chart2DWindow}" NavigationUIVisibility="Hidden" />
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <Frame Content="{Binding VisualizationViewModel.Chart2DWindow}" NavigationUIVisibility="Hidden" />
                         <!--<Viewport3D Grid.Row="1">
                             <Viewport3D.Camera>
                                 <PerspectiveCamera Position="0.5,0.5,5.5" LookDirection="0,0,-3.5"  />
@@ -458,7 +489,7 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
                                 </ModelVisual3D>
                             </Viewport3D.Children>
                         </Viewport3D>-->
-
+                            </ScrollViewer>
                     </TabItem>
                     <!--<TabItem
                         Foreground="Black"
@@ -472,9 +503,9 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
         <Grid Grid.Column="3" Grid.Row="1" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="8*" />
+                <RowDefinition Height="7*" />
 
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 
@@ -486,8 +517,8 @@ Grid.Column="0" CommandParameter="{Binding ElementName=this}" />
             <Grid Grid.Row="1">
 
                 <Grid >
-
-                    <StackPanel Margin="10">
+                    
+                        <StackPanel Margin="10" VerticalAlignment="Top">
 
                         <Label
    
@@ -587,7 +618,7 @@ VerticalContentAlignment="Center"
                                 Text="{Binding ResperatorsOrgan}">
 
                         </TextBox>
-                        <Label
+                        <!--<Label
    
 Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
 VerticalContentAlignment="Center" 
@@ -595,8 +626,8 @@ VerticalContentAlignment="Center"
   FontSize="15"
 >
                             Степень поражения:
-                        </Label>
-                        <TextBox
+                        </Label>-->
+                        <!--<TextBox
                                 Grid.Row="0" Grid.Column="1" Margin="7" VerticalAlignment="Center"
                                 VerticalContentAlignment="Center" 
                                 HorizontalContentAlignment="Center"
@@ -605,7 +636,7 @@ VerticalContentAlignment="Center"
                                 IsReadOnly="True" 
                                 Text="{Binding DegreeOfDamage}">
 
-                        </TextBox>
+                        </TextBox>-->
                         <Label
    
 Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"
@@ -627,11 +658,13 @@ VerticalContentAlignment="Center"
                         </TextBox>
 
                     </StackPanel>
+                       
                 </Grid>
 
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
@@ -653,6 +686,17 @@ VerticalContentAlignment="Center"
                             Margin="10"
                             Background="White" BorderBrush="#42b445 " Content="Сохранить параметры"
                             Foreground="Black">
+                        </Button>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                        <Button
+                             Command="{Binding HandWaveCommand}"
+                             Margin="10"
+                             Background="White" BorderBrush="#42b445 " Content="Головная ударная волна"
+                             Foreground="Black">
                         </Button>
                     </Viewbox>
                 </Grid>

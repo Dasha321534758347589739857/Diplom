@@ -19,7 +19,7 @@
         <dbTables:EnvironmentViewModel x:Key="EnvModel"/>
         <dbTables:WatcherViewModel x:Key="WatModel"/>
         <dbTables:AdminViewModel x:Key="AdminModel"/>
-        
+        <dbTables:GlossaryTabViewModel x:Key="GlossaryModel"/>
     </Window.Resources>
 
     <Grid>
@@ -101,7 +101,7 @@
                     TabStripPlacement="Top"
                    
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignNavigationRailTabControl}" x:Name="dataTab" Grid.ColumnSpan="3" Margin="0,52,0,0" Grid.RowSpan="2" 
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}" x:Name="dataTab" Grid.ColumnSpan="3" Margin="0,52,0,0" Grid.RowSpan="2" Cursor="" 
                     >
 
             <TabItem 
@@ -113,16 +113,19 @@
                 >
 
                 <TabItem.Header   >
-
-                    <StackPanel
+                    <Viewbox >
+                        <StackPanel
                         Width="auto"
-                        Height="auto" Cursor="">
+                        Height="auto" Cursor=""
+                            >
 
-                        <TextBlock
+                            <TextBlock
+                                Margin="20"
                             Width="auto"
-                            FontSize="13"
+                           
                             Text="Пользователи" />
-                    </StackPanel>
+                        </StackPanel>
+                    </Viewbox>
 
                 </TabItem.Header>
 
@@ -175,8 +178,8 @@
                                                               Margin="5"
                                                               materialDesign:PasswordBoxAssist.Password="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
                                                               materialDesign:HintAssist.Hint="Пароль"
-                                                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                                                              materialDesign:TextFieldAssist.HasClearButton="True"
+                                                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                                              materialDesign:TextFieldAssist.HasClearButton="False"
                                                               IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
                                                               VerticalContentAlignment="Center" />
 
@@ -255,8 +258,8 @@
                                                                 Margin="5"
                                                                 materialDesign:PasswordBoxAssist.Password="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
                                                                 materialDesign:HintAssist.Hint="Пароль"
-                                                                Style="{StaticResource MaterialDesignFilledPasswordBox}"
-                                                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                                                materialDesign:TextFieldAssist.HasClearButton="False"
                                                                 IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
                     
                                                                 VerticalContentAlignment="Center" />
@@ -339,16 +342,18 @@
                       MinWidth="240"
                       DataContext="{StaticResource SubModel}" >
                 <TabItem.Header>
-                    <StackPanel
+                    <Viewbox>
+                        <StackPanel
               Width="auto"
               Height="auto">
 
                         <TextBlock
-                              FontSize="13"
+                              
                               HorizontalAlignment="Center"
-                             
+                             Margin="20"
                               Text="Вещества" />
                     </StackPanel>
+                        </Viewbox>
                 </TabItem.Header>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                     <Grid.RowDefinitions>
@@ -520,14 +525,14 @@
 
                                             <TextBox
                                                  IsReadOnly="True"
-                                                 materialDesign:HintAssist.Hint="Масса"
+                                                 materialDesign:HintAssist.Hint="Масса, кг"
                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                 Margin="5,0,5,20"
                                                 MinWidth="400"
                                                  Text="{Binding Path=Mass}"
                                                  VerticalAlignment="Center" />
                                             <TextBox
-                                                 materialDesign:HintAssist.Hint="Концентрация вещества"
+                                                 materialDesign:HintAssist.Hint="Концентрация вещества, %"
                                                  materialDesign:TextFieldAssist.SuffixText="{Binding Path=Property.Mass}"
                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                  Margin="5,0,5,20"
@@ -568,19 +573,21 @@
             </TabItem>
             <TabItem  Name="Glossary"
            MinWidth="240"
-           DataContext="{StaticResource UserModel}" 
-                      >
+           DataContext="{StaticResource GlossaryModel}">
                 <TabItem.Header>
-                    <StackPanel
+                    <Viewbox>
+                        <StackPanel
    Width="auto"
-   Height="auto">
+   Height="auto"
+                        >
 
-                        <TextBlock
-                   FontSize="13"
-                   HorizontalAlignment="Center"
+                            <TextBlock
                   
-                   Text="Справочник веществ" />
-                    </StackPanel>
+                   HorizontalAlignment="Center"
+                  Margin="20"
+                   Text="Справочник" />
+                        </StackPanel>
+                    </Viewbox>
                 </TabItem.Header>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                     <Grid.RowDefinitions>
@@ -613,7 +620,7 @@
                             <Button Margin="20" materialDesign:ButtonAssist.CornerRadius="0" Style="{StaticResource MaterialDesignRaisedButton}" Content="Добавить"
                         HorizontalAlignment="Center"  
                              Cursor="Hand"
-                             Command="{Binding }"
+                             Command="{Binding AddGlossaryCommand}"
                        Foreground="Black"
                              />
                         </Viewbox>
@@ -623,7 +630,7 @@
 
                     </Grid>
 
-                    <!--<GroupBox Grid.RowSpan="2" Grid.ColumnSpan="3"  Grid.Column="1" Grid.Row="1">
+                    <GroupBox Grid.RowSpan="2" Grid.ColumnSpan="3"  Grid.Column="1" Grid.Row="1">
                         <GroupBox.Header >
                             <Viewbox Height="30">
 
@@ -645,57 +652,58 @@
                  HorizontalScrollBarVisibility="Disabled"
                  VerticalScrollBarVisibility="Auto"  >
 
-                            <ListBox ItemsSource="{Binding}" x:Name="" >
+                            <ListBox ItemsSource="{Binding Glossaries}" x:Name="glossariesList" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Viewbox>
                                             <StackPanel Orientation="Horizontal"  >
                                                 <TextBox 
                                          MinWidth="300"
-                                         materialDesign:HintAssist.Hint="Название"
+                                         materialDesign:HintAssist.Hint="Название вещества"
                                          HorizontalContentAlignment="Center"
                                          Margin="5,0,6,0"
                                          VerticalAlignment="Center"
                                          VerticalContentAlignment="Center"
-                                         Text="{Binding Name}" 
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                                                              />
+                                         IsReadOnly="True"
+                                         Text="{Binding NameSubstance}" 
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
 
                                                 <TextBox 
                                          MinWidth="300"
-                                         materialDesign:HintAssist.Hint="Агрегатное состояние"
+                                         materialDesign:HintAssist.Hint="Корректировочный параметр"
                                          HorizontalContentAlignment="Center"
                                          Margin="5,0,6,0"
                                          VerticalAlignment="Center"
                                          VerticalContentAlignment="Center"
-                                         Text="{Binding StateOfAggregation}"
+                                         Text="{Binding beta}"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
-                                                <TextBox MinWidth="100"
-                                         materialDesign:HintAssist.Hint="Плотность, кг/м^3"
+
+
+                                                <TextBox 
+                                         MinWidth="300"
+                                         materialDesign:HintAssist.Hint="Минимальная концентрация, %"
                                          HorizontalContentAlignment="Center"
                                          Margin="5,0,6,0"
                                          VerticalAlignment="Center"
                                          VerticalContentAlignment="Center"
-                                         Text="{Binding Density}"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         />
-
-
-
-                                                <TextBox MinWidth="100"
-                                         materialDesign:HintAssist.Hint="Класс опасности"
-                                         HorizontalContentAlignment="Center"
-                                         Margin="5,0,6,0"
-                                         VerticalAlignment="Center"
-                                         VerticalContentAlignment="Center"
-                                         Text="{Binding HazardClass}"
+                                         Text="{Binding minConcentration}"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                                                <TextBox 
+                                            MinWidth="300"
+                                            materialDesign:HintAssist.Hint="Максимальная концентрация, %"
+                                            HorizontalContentAlignment="Center"
+                                            Margin="5,0,6,0"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Text="{Binding maxConcentration}"
+                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                                                 <Button
                                         Margin="3,0"
-                                        Command="{Binding DeleteSubstanceCommand, Source={StaticResource SubModel}}"
+                                        Command="{Binding DeleteGlossaryCommand, Source={StaticResource GlossaryModel}}"
                                         CommandParameter="{Binding }"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
@@ -710,7 +718,7 @@
                                                 </Button>
                                                 <Button
                                        Margin="3,0"
-                                       Command="{Binding EditSubstanceCommand, Source={StaticResource SubModel}}"
+                                       Command="{Binding EditGlossaryCommand, Source={StaticResource GlossaryModel}}"
                                        CommandParameter="{Binding }"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -729,7 +737,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </ScrollViewer>
-                    </GroupBox>-->
+                    </GroupBox>
                     
 
 
@@ -741,16 +749,18 @@
             <TabItem  Name="propertiesTab"
                       MinWidth="240">
                 <TabItem.Header>
-                    <StackPanel
+                    <Viewbox>
+                        <StackPanel
              Width="auto"
              Height="auto">
 
                         <TextBlock
-                 FontSize="13"
+                 Margin="20"
                  HorizontalAlignment="Center"
                 
                  Text="Объекты" />
                     </StackPanel>
+                        </Viewbox>
                 </TabItem.Header>
                 <Grid >
 
@@ -882,12 +892,13 @@
                                                     <StackPanel Orientation="Horizontal"  >
 
                                                         <TextBox MinWidth="100"
+                                                                  Margin="5,0,6,0"
                                                             materialDesign:HintAssist.Hint="Название"
                                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
-                                                            Margin="5,0,6,0"
                                                             VerticalAlignment="Center"
-                                                            VerticalContentAlignment="Center"
+                                                            
+                                                            
                                                             Text="{Binding Name}" />
                                                         <TextBox MinWidth="100"
                                                                 materialDesign:HintAssist.Hint="Плотность кг/м^3"
@@ -895,7 +906,7 @@
                                                                 HorizontalContentAlignment="Center"
                                                                 Margin="5,0,6,0"
                                                                 VerticalAlignment="Center"
-                                                                VerticalContentAlignment="Center"
+                                                               
                                                                 Text="{Binding Density}" />
                                                         <Button
                                                             Margin="3,0"
@@ -975,7 +986,7 @@
 
 
                                                             <TextBox MinWidth="50"
-                                                            materialDesign:HintAssist.Hint="Температура"
+                                                            materialDesign:HintAssist.Hint="Температура,С"
                                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
                                                                      Margin="5,0,6,0"
@@ -983,7 +994,7 @@
                                                             Text="{Binding Temperature}" />
 
                                                             <TextBox MinWidth="100"
-                                                            materialDesign:HintAssist.Hint="Радиус"
+                                                            materialDesign:HintAssist.Hint="Радиус, м"
                                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
                                                                      Margin="5,0,6,0"
@@ -991,7 +1002,7 @@
                                                             Text="{Binding Radius}" />
 
                                                             <TextBox MinWidth="100"
-                                                            materialDesign:HintAssist.Hint="Высота"
+                                                            materialDesign:HintAssist.Hint="Высота, м"
                                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
                                                                      Margin="5,0,6,0"
@@ -999,7 +1010,7 @@
                                                             Text="{Binding Height}" />
                                                             
                                                             <TextBox MinWidth="200"
-                                                            materialDesign:HintAssist.Hint="Глубина"
+                                                            materialDesign:HintAssist.Hint="Глубина, м"
                                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
                                                                      Margin="5,0,6,0"
@@ -1108,17 +1119,19 @@
             <TabItem Width="240">
 
                 <TabItem.Header>
-                    <StackPanel
+                    <Viewbox>
+                        <StackPanel
              Width="auto"
              Height="auto"
                            >
 
                         <TextBlock
-                 FontSize="13"
+                 
                  HorizontalAlignment="Center"
-                
+                 Margin="20"
                  Text="Окружение" />
                     </StackPanel>
+                        </Viewbox>
                 </TabItem.Header>
                 <Grid >
 
@@ -1175,7 +1188,7 @@
                                                             VerticalContentAlignment="Center"
                                                             Text="{Binding Name}" />
                                                         <TextBox MinWidth="100"
-                                                                materialDesign:HintAssist.Hint="Влажность"
+                                                                materialDesign:HintAssist.Hint="Влажность,%"
                                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                                 HorizontalContentAlignment="Center"
                                                                 Margin="5,0,6,0"
@@ -1359,7 +1372,7 @@
                                                             />
 
                                                         <TextBox MinWidth="100"
-                                                            materialDesign:HintAssist.Hint="Влажность"
+                                                            materialDesign:HintAssist.Hint="Плотность,кг/м^3"
                                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                             HorizontalContentAlignment="Center"
                                                             Margin="5,0,6,0"
@@ -1556,16 +1569,17 @@
 
             <TabItem Width="240">
                 <TabItem.Header   >
-
-                    <StackPanel
+                    <Viewbox>
+                        <StackPanel
          Width="auto"
          Height="auto" Cursor="">
 
                         <TextBlock
              Width="auto"
-             FontSize="13"
+             Margin="20"
              Text="Наблюдение" />
                     </StackPanel>
+                        </Viewbox>
 
                 </TabItem.Header>
                 <Grid DataContext="{StaticResource WatModel}">
@@ -1620,7 +1634,7 @@
                                                             FontSize="10"
                                                             Text="{Binding Name}" />
                                                         <TextBox MinWidth="400"
-                                                                materialDesign:HintAssist.Hint="Масса"
+                                                                materialDesign:HintAssist.Hint="Масса, кг"
                                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                                 HorizontalContentAlignment="Center"
                                                                 Margin="5,0,6,0"

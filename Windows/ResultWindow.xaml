@@ -5,25 +5,19 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-        
+        WindowState="Maximized"
+ResizeMode="NoResize"
         xmlns:local="clr-namespace:Diplom.Windows"
         Name="this"
         mc:Ignorable="d"
-        Title="ResultWindow" Height="800" Width="1200" Background="White">
+        Title="ResultWindow" Height="800" Width="1200"  Background="White">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="70*"/>
-            <ColumnDefinition Width="5*"/>
-            
-            
-
-        </Grid.ColumnDefinitions>
+       
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
 
         </Grid.RowDefinitions>
 
@@ -79,9 +73,13 @@
             <Grid Grid.Column="0">
 
 
-                <wpf:CartesianChart Series="{Binding ImpulsSeries}"
+                <wpf:CartesianChart  
+                    Series="{Binding ImpulsSeries}"
                     XAxes="{Binding XRadius}"
-                    YAxes="{Binding YPresure}" />
+                    YAxes="{Binding YPresure}" 
+                                 
+                    />
+                
             </Grid>
             <Grid Grid.Column="1">
 

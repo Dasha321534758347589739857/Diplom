@@ -13,7 +13,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Media3D;
+
 
 namespace Diplom.ViewModels.AdminViewModels
 {
@@ -30,9 +32,7 @@ namespace Diplom.ViewModels.AdminViewModels
             using Context ctx = new Context();
             glossaries = new ObservableCollection<Glossary>(ctx.Glossaries.Include(a=>a.Substance));
             substances = new ObservableCollection<Substance>(ctx.Substances.ToList());
-
             WeakReferenceMessenger.Default.Register<NewGlossaryMessage>(this);
-           
         }
 
         [RelayCommand]
@@ -55,5 +55,34 @@ namespace Diplom.ViewModels.AdminViewModels
 
         }
 
+        [RelayCommand]
+        private void DeleteGlossary(Glossary gloss)
+        {
+
+            using Context ctx = new Context();
+            if (gloss is null)
+            {
+                MessageBox.Show("Внутернняя ошибка, повтроите попытку позже", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var res = MessageBox.Show("Вы уверены, что хотите удалить справочную информацию", "Подтверждение", MessageBoxButton.YesNo);
+            if (res != MessageBoxResult.Yes)
+                return;
+            ctx.Glossaries.Remove(gloss);
+            ctx.SaveChanges();
+
+            Glossaries = new ObservableCollection<Glossary>(ctx.Glossaries.ToList());
+        }
+
+
+        [RelayCommand]
+        private void EditGlossary(Glossary gloss)
+        {
+            using Context ctx = new Context();
+
+            ctx.Glossaries.Update(gloss);
+            ctx.SaveChanges();
+
+        }
     }
 }

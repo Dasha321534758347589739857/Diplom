@@ -58,7 +58,7 @@ namespace Diplom.ViewModels.AdminViewModels
                 using Context ctx = new Context();
                 Substance substance = new Substance();
                 substance = ctx.Substances.FirstOrDefault(x => x.Id == SelectedSubstance.Id);
-                WeakReferenceMessenger.Default.Send(new NewGlossaryMessage(new NewGlossary() { NameSubstance = substance.Name, IdSubstance = substance.Id, minConcentration = MinConcentration, maxConcentration = MaxConcentration, Substance=substance }));
+                WeakReferenceMessenger.Default.Send(new NewGlossaryMessage(new NewGlossary() { NameSubstance = substance.Name, IdSubstance = substance.Id, beta=Beta, minConcentration = MinConcentration, maxConcentration = MaxConcentration, Substance=substance }));
                 //window.Close();
             }
             else

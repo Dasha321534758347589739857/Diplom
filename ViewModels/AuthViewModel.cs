@@ -39,14 +39,14 @@ namespace Diplom.ViewModels
             }
             Context ctx = new Context();
 
-            var user = ctx.Users.Include(x => x.Role).FirstOrDefault(x => x.Login == Login && x.Password == pwb.Password);
+            var user = ctx.Users.Include(x => x.Role).FirstOrDefault(x => x.Login == Login && x.Password == pwb.Password.ToString());
             if (user is null)
             {
                 TryEnterCount++;
                 Error = "Неверный логин и/или пароль";
                 return;
             }
-            if (user.Role!.Name == "admin")
+            if (user.Role.Name == "admin")
             {
                 window.Hide();
                 var main = new AdminWindow() { Owner = window };

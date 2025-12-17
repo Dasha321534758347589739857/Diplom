@@ -35,7 +35,7 @@ namespace Diplom.ViewModels.AdminViewModels
         {
             using Context ctx = new Context();
             Substancess = new ObservableCollection<Substance>(ctx.Substances.ToList());
-            SubstanceInAnObjectss = new ObservableCollection<SubstanceInAnObject>(ctx.SubstanceInAnObjects.ToList());
+            SubstanceInAnObjectss = new ObservableCollection<SubstanceInAnObject>(ctx.SubstanceInAnObjects.Include(a => a.Objectt).Include(a => a.Substance).ToList());
 
             WeakReferenceMessenger.Default.Register<NewSubstanceMessage>(this);
             WeakReferenceMessenger.Default.Register<ChangeDbMessage>(this);
@@ -65,7 +65,7 @@ namespace Diplom.ViewModels.AdminViewModels
             ctx.SubstanceInAnObjects.Remove(substanceInAnObject);
             ctx.SaveChanges();
 
-            SubstanceInAnObjectss = new ObservableCollection<SubstanceInAnObject>(ctx.SubstanceInAnObjects.ToList());
+            SubstanceInAnObjectss = new ObservableCollection<SubstanceInAnObject>(ctx.SubstanceInAnObjects.Include(a => a.Objectt).Include(a => a.Substance).ToList());
 
 
         }

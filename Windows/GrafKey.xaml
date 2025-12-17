@@ -13,7 +13,7 @@
 
         
 
-            <ToggleButton
+            <!--<ToggleButton
 Content="{materialDesign:PackIcon Kind=Heart,                                                         Size=21}"
 IsChecked="False"
 Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
@@ -61,16 +61,16 @@ Background="#D6FDD3" BorderBrush="Black" Width="50" Height="50" Click="Button_Cl
                 >
             </Button>
 
-        <Button
+        --><!--<Button
 
 materialDesign:ButtonAssist.CornerRadius="35" Style="{StaticResource MaterialDesignRaisedButton}"
     Content=">" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-Background="#D6FDD3" BorderBrush="Black" Width="50" Height="50" Click="ButtonNext_Click"
+Background="#D6FDD3" BorderBrush="Black" Width="50" Height="50" Click=""
    Margin="250,250,0,0"
             Name="ButtonNext"
                
                 >
-        </Button>
+        </Button>--><!--
 
         <Button
 
@@ -80,7 +80,7 @@ Background="#D6FDD3" BorderBrush="Black" Width="50" Height="50" Click="ButtonX_C
    Margin="-250,250,0,0"
                 
                 >
-        </Button>
+        </Button>-->
 
     </Grid>
 </Window>

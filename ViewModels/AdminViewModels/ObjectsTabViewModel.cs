@@ -69,7 +69,7 @@ namespace Diplom.ViewModels.AdminViewModels
             ctx.Objectts.Remove(objectt);
             ctx.SaveChanges();
 
-            Objecttss = new ObservableCollection<Objectt>(ctx.Objectts.ToList());
+            Objecttss = new ObservableCollection<Objectt>(ctx.Objectts.Include(a => a.Fabric).ToList());
 
 
         }
@@ -134,7 +134,7 @@ namespace Diplom.ViewModels.AdminViewModels
             ctx.EmergencySituationAtTheFacilities.Remove(emergencySituationAtTheFacility);
             ctx.SaveChanges();
             
-                emergencySituationAtTheFacilities = new ObservableCollection<EmergencySituationAtTheFacility>(ctx.EmergencySituationAtTheFacilities.ToList());
+            EmergencySituationAtTheFacilities = new ObservableCollection<EmergencySituationAtTheFacility>(ctx.EmergencySituationAtTheFacilities.Include(a => a.SubstanceInAnObject).Include(b => b.Air).Include(c => c.Priming).Include(d => d.EmergencySituation).ToList());
             
 
         }
@@ -149,14 +149,14 @@ namespace Diplom.ViewModels.AdminViewModels
             Objectt addSubstance = new Objectt() { Name = substance.Name, IdMaterial=fabricc.Id, Temperature = substance.Temperature, Radius = substance.Radius, Height=substance.Height, DistanceFromSurface=substance.DistanceFromSurface, Clutter=substance.Clutter, Fabric=fabricc};
             ctx.Objectts.Add(addSubstance);
             ctx.SaveChanges();
-            Objecttss = new ObservableCollection<Objectt>(ctx.Objectts.ToList());
+            Objecttss = new ObservableCollection<Objectt>(ctx.Objectts.Include(a => a.Fabric).ToList());
 
         }
 
         public void Receive(ChangeDbMessage message)
         {
             using Context ctx = new Context();
-            Objecttss = new ObservableCollection<Objectt>(ctx.Objectts.ToList());
+            Objecttss = new ObservableCollection<Objectt>(ctx.Objectts.Include(a => a.Fabric).ToList());
         }
 
         public void Receive(NewMaterialMessage message)
