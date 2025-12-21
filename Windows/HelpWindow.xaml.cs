@@ -23,10 +23,8 @@ public partial class HelpWindow : Window
             string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string exeDir = System.IO.Path.GetDirectoryName(exePath);
 
-// Полный путь к папке Resources
             string resourcesPath = System.IO.Path.Combine(exeDir, "Resources");
 
-// Убедись что папка существует
             if (!Directory.Exists(resourcesPath))
             {
                 MessageBox.Show($"Папка Resources не найдена по пути: {resourcesPath}");
