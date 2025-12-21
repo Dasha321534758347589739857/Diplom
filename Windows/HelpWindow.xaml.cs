@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text;
 using System.Windows;
+using Microsoft.Web.WebView2.Core;
 
 namespace Diplom.Windows;
 
@@ -19,34 +20,28 @@ public partial class HelpWindow : Window
     {
         try
         {
-            await HelpBrowser.EnsureCoreWebView2Async();
+            string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string exeDir = System.IO.Path.GetDirectoryName(exePath);
 
-            // Включаем JavaScript
-            HelpBrowser.CoreWebView2.Settings.IsScriptEnabled = true;
+// Полный путь к папке Resources
+            string resourcesPath = System.IO.Path.Combine(exeDir, "Resources");
 
-            // Проверяем, существует ли файл
-            if (File.Exists(url))
+// Убедись что папка существует
+            if (!Directory.Exists(resourcesPath))
             {
-                // Читаем содержимое файла
-                string htmlContent = File.ReadAllText(url, Encoding.UTF8);
+                MessageBox.Show($"Папка Resources не найдена по пути: {resourcesPath}");
+                return;
+            }
 
-                // Загружаем HTML в WebView2
-                HelpBrowser.NavigateToString(htmlContent);
-            }
-            else
-            {
-                // Если файл не найден, показываем ошибку
-                string errorHtml = @"
-                    <html>
-                    <body style='font-family: Arial; padding: 20px;'>
-                        <h2 style='color: red;'>Файл не найден</h2>
-                        <p>Не удалось найти файл:</p>
-                        <code>" + url + @"</code>
-                        <p>Проверьте путь к файлу.</p>
-                    </body>
-                    </html>";
-                HelpBrowser.NavigateToString(errorHtml);
-            }
+            await HelpBrowser.EnsureCoreWebView2Async(null);
+
+            HelpBrowser.CoreWebView2.SetVirtualHostNameToFolderMapping(
+                "help.local",
+                resourcesPath,
+                Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow);
+
+            string htmlPath = System.IO.Path.Combine(exeDir, "help.html");
+            HelpBrowser.CoreWebView2.Navigate($"https://help.local/help.html");
         }
         catch (Exception ex)
         {
