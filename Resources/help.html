@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-справка: ПК «НС-ШТ»</title>
+    <style>
+        * { /*Общий стиль*/
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme main {
+            background-color: #2d2d2d;
+        }
+
+        body.dark-theme .card {
+            background-color: #3d3d3d;
+            color: #e0e0e0;
+        }
+
+            body.dark-theme header {
+                background: linear-gradient(135deg, #59BD68) !important;
+            }
+
+            body.dark-theme table {
+                background-color: #59BD68;
+                color: #e0e0e0;
+            }
+
+            body.dark-theme th { /*Цвет заголовков*/
+                background-color: #B7F7C1;
+            }
+
+        body.dark-theme tr:nth-child(even) { /*Альтернативные списки таблицы*/
+            background-color: #444;
+        }
+
+        body.dark-theme h1,
+        body.dark-theme h2,
+        body.dark-theme h3,
+        body.dark-theme h4 {
+            color: #ffffff !important;
+        }
+
+        body.dark-theme .subtitle {
+            color: #cccccc !important;
+        }
+
+        body.dark-theme .nav-links a { /*Ссылки в навигационной панели*/
+            color: #ffffff !important;
+            background: #3d3d3d !important;
+        }
+
+        body.dark-theme .nav-links {
+            background: #2d2d2d !important;
+        }
+
+            body.dark-theme .note {
+                background-color: #3d3d3d;
+                color: #ffffff !important;
+            }
+
+        body.dark-theme .warning {
+            background-color: #5d4a00;
+            color: #ffffff !important;
+        }
+
+            body.dark-theme footer { /*Подвал*/
+                color: #cccccc !important; /*!important - Принудительное переопределение стиля*/
+            }
+        
+        #scroll-to-top {
+            transition: all 0.3s ease;
+        }
+
+            #scroll-to-top:hover {
+                background-color: #B7F7C1 !important;
+                transform: scale(1.1) !important;
+            }
+
+        .screenshot-container {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .screenshot-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #59BD68);
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        main {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #59BD68;
+            border-bottom: 2px solid #59BD68;
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        h3 {
+            color: #59BD68;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        h4 {
+            color: #59BD68;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .screenshot-placeholder {
+            background-color: #B7F7C1;
+            border: 2px dashed #59BD68;
+            border-radius: 8px;
+            height: 300px;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .screenshot-placeholder.large {
+            height: 400px;
+        }
+
+        .screenshot-placeholder.small {
+            height: 200px;
+        }
+
+        .screenshot-placeholder span {
+            margin-top: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: #B7F7C1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #59BD68;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #59BD68;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #B7F7C1;
+        }
+
+        .note {
+            background-color: #B7F7C1;
+            border-left: 4px solid #59BD68;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning {
+            background-color: #B7F7C1;
+            border-left: 4px solid #59BD68;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+            .nav-links a:hover {
+                background: #B7F7C1;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Программный комплекс для оценки последствий нештатных ситуаций на объектах шахтного типа</h1>
+    <p class="subtitle">ПК «НС-ШТ» — Веб-справка для пользователей и администраторов</p>
+    <p>Версия документа: 1.0 | Дата последнего обновления: Июнь 2025</p>
+</header>
+
+<div class="nav-links">
+    <a href="#intro">Введение</a>
+    <a href="#description">Общее описание</a>
+    <a href="#user-guide">Руководство пользователя</a>
+    <a href="#admin-guide">Руководство администратора</a>
+    <a href="#requirements">Технические требования</a>
+    <a href="#appendix">Приложения</a>
+</div>
+
+<main>
+    <section id="intro">
+        <h2>1. Введение</h2>
+
+        <h3>1.1. Тема</h3>
+        <p><strong>Программный комплекс для оценки последствий нештатных ситуаций на объектах шахтного типа (ПК
+            «НС-ШТ»)</strong>.</p>
+
+        <h3>1.2. Назначение программного комплекса</h3>
+        <p>Программный комплекс «НС-ШТ» предназначен для автоматизированной оценки последствий и рисков при
+            возникновении нештатных ситуаций (в частности, взрывов газовоздушных смесей) на объектах шахтного типа.
+            Основная задача комплекса — поддержка принятия решений в области промышленной безопасности за счет
+            моделирования опасных факторов и прогнозирования их воздействия на персонал и объекты инфраструктуры.</p>
+
+        <h3>1.3. Цель работы программного комплекса</h3>
+        <p>Повышение безопасности работников предприятий за счёт разработки специализированного программного комплекса
+            для прогнозирования последствий нештатных ситуаций (НС) и оценки рисков на объектах шахтного типа
+            (коллекторы, трубопроводы, резервуары, скважины и другие объекты с ограниченным пространством).</p>
+
+        <div class="screenshot-container">
+            <img src="/MainWindow_screenshot.png">
+            <div class="screenshot-caption">Рис. 1: Главное окно программы при запуске</div>
+        </div>
+    </section>
+
+    <section id="description">
+        <h2>2. Общее описание</h2>
+
+        <h3>2.1. Функциональные требования (основной функционал)</h3>
+
+        <div class="grid-2">
+            <div class="card">
+                <h4>Для Пользователя:</h4>
+                <ul>
+                    <li>Авторизация в системе</li>
+                    <li>Ввод параметров для моделирования (выбор/задание объекта, вещества, параметров среды)</li>
+                    <li>Задание координат эпицентра нештатной ситуации и наблюдателя</li>
+                    <li>Расчёт и визуализация параметров взрывной волны</li>
+                    <li>Оценка рисков для человека в точке нахождения наблюдателя</li>
+                    <li>Выгрузка результатов в файл</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Для Администратора:</h4>
+                <ul>
+                    <li>Управление базой данных (добавление, редактирование, удаление записей)</li>
+                    <li>Работа со справочниками: вещества, объекты, грунты, воздух</li>
+                    <li>Управление учётными записями пользователей</li>
+                    <li>Назначение ролей и прав доступа</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>2.2. Целевая аудитория</h3>
+        <ul>
+            <li>Инженеры по техносферной безопасности</li>
+            <li>Специалисты по промышленной безопасности</li>
+            <li>Администраторы системы</li>
+            <li>Научные сотрудники, занимающиеся моделированием аварийных ситуаций</li>
+        </ul>
+
+        <h3>2.3. Архитектура программного комплекса</h3>
+        <p>Программный комплекс построен по трёхуровневой архитектуре:</p>
+
+        <div class="screenshot-container">
+            <img src="/architecture.png">
+            <div class="screenshot-caption">Рис. 2: Трёхуровневая архитектура программного обеспечения</div>
+        </div>
+
+        <h4>Уровни архитектуры программного комплекса:</h4>
+        <div class="grid-2">
+            <div class="card">
+                <h4>1. Системное программное обеспечение</h4>
+                <p><strong>Системное ПО:</strong> Windows 11</p>
+                <p><strong>Инструментальное ПО:</strong> Microsoft .NET</p>
+            </div>
+
+            <div class="card">
+                <h4>2. Прикладное программное обеспечение</h4>
+                <p><strong>Модуль:</strong> Расчёт последствий взрыва</p>
+                <p><strong>Язык программирования:</strong> C# (Microsoft .NET)</p>
+            </div>
+
+            <div class="card">
+                <h4>3. Проблемно-ориентированное ПО</h4>
+                <p><strong>Программный комплекс "НС-ШТ"</strong></p>
+            </div>
+        </div>
+
+        <h4>Ключевые компоненты:</h4>
+        <ul>
+            <li>Модуль авторизации и аутентификации</li>
+            <li>Модуль работы с базой данных (администрирование)</li>
+            <li>Модуль расчёта характеристик взрывной волны</li>
+            <li>Модуль оценки рисков для человека</li>
+            <li>Модуль визуализации и выгрузки данных</li>
+        </ul>
+    </section>
+
+    <section id="user-guide">
+        <h2>3. Руководство пользователя (Специалиста по техносферной безопасности)</h2>
+
+        <h3>3.1. Начало работы</h3>
+
+        <h4>3.1.1. Запуск программы</h4>
+        <p>Для запуска программы выполните двойной клик по файлу <code>NS_SHT.exe</code>. Дождитесь полной загрузки
+            приложения.</p>
+
+        <h4>3.1.2. Окно авторизации</h4>
+        <p>При запуске откроется окно авторизации. Введите логин и пароль, предоставленные администратором системы.</p>
+
+        <div class="screenshot-container">
+            <img src="Auth_Screenshot.png">
+            <div class="screenshot-caption">Рис. 3: Окно авторизации с полями "Логин" и "Пароль"</div>
+        </div>
+
+        <div class="note">
+            <strong>Примечание:</strong> При первом входе рекомендуется сменить пароль. Для этого обратитесь к
+            администратору.
+        </div>
+
+        <h3>3.2. Основной интерфейс пользователя</h3>
+        <p>После успешной авторизации откроется главное рабочее окно программы. Интерфейс разделён на несколько
+            логических областей.</p>
+
+        <div class="screenshot-container">
+            <img src="MainWindow_screenshot.png">
+            <div class="screenshot-caption">Рис. 4: Главное рабочее окно программы после входа пользователя</div>
+        </div>
+
+        <h3>3.3. Проведение эксперимента (оценка последствий НС)</h3>
+
+        <h4>3.3.1. Шаг 1: Выбор / ввод данных об объекте</h4>
+        <p>В соответствующем разделе выберите объект шахтного типа из базы данных:</p>
+
+        <div class="screenshot-container">
+            <img src="object_screenshot.png">
+            <div class="screenshot-caption">Рис. 5: Секция "Объект" с полями для ввода параметров</div>
+        </div>
+
+        <h4>3.3.2. Шаг 2: Выбор / ввод данных о веществе</h4>
+        <p>Выберите потенциально опасное вещество из базы данных (например, "Метан")</p>
+
+        <div class="screenshot-container">
+            <img src="substance.png">
+            <div class="screenshot-caption">Рис. 6: Секция "Вещество" с выпадающим списком</div>
+        </div>
+
+        <h4>3.3.3. Шаг 3: Выбор / ввод параметров окружающей среды и наблюдателя</h4>
+        <p>Определите параметры для расчёта и расположение ключевых точек:</p>
+        <ul>
+            <li><strong>Координаты эпицентра взрыва:</strong> X, Y (в метрах)</li>
+            <li><strong>Координаты наблюдателя:</strong> X, Y (в метрах)</li>
+            <li><strong>Шаг расчёта:</strong> Расстояние между точками расчёта (в метрах)</li>
+        </ul>
+
+        <div class="screenshot-container">
+            <img src="enviroment.png">
+            <div class="screenshot-caption">Рис. 7: Секция "Окружающая среда и наблюдатель"</div>
+        </div>
+
+        <h4>3.3.4. Шаг 4: Запуск расчёта</h4>
+        <p>После заполнения всех необходимых полей нажмите кнопку <strong>"Рассчитать"</strong> или <strong>"Запустить
+            моделирование"</strong>. Система начнёт вычисления, которые могут занять некоторое время в зависимости от
+            сложности модели.</p>
+
+        <div class="screenshot-container">
+            <img src="On-Button.png">
+            <div class="screenshot-caption">Рис. 8: Кнопка "Эксперимент"</div>
+        </div>
+
+        <h3>3.4. Анализ результатов</h3>
+
+        <h4>3.4.1. Таблица с результатами расчёта</h4>
+        <p>После завершения расчёта в соответствующей вкладке появится таблица со следующими колонками:</p>
+        <ul>
+            <li><strong>Расстояние (L, м):</strong> Расстояние от эпицентра до точки расчёта</li>
+            <li><strong>Избыточное давление (ΔP, кПа):</strong> Значение избыточного давления во фронте ударной волны
+            </li>
+            <li><strong>Импульс (I, кг·м/с):</strong> Импульс фазы сжатия</li>
+            <li><strong>Время (t, с):</strong> Время прихода волны в точку</li>
+        </ul>
+
+        <div class="screenshot-container">
+            <img src="Table.png">
+            <div class="screenshot-caption">Рис. 9: Таблица с результатами расчёта</div>
+        </div>
+
+        <h4>3.4.2. Графическое представление</h4>
+        <p>Во вкладке "График" отображается зависимость избыточного давления от расстояния до эпицентра.</p>
+
+        <div class="screenshot-container">
+            <img src="Charts.png">
+            <div class="screenshot-caption">Рис. 10: График зависимости избыточного давления от расстояния</div>
+        </div>
+
+        <h4>3.4.3. Оценка рисков для наблюдателя</h4>
+        <p>В отдельном блоке выводятся результаты оценки воздействия на наблюдателя:</p>
+        <ul>
+            <li><strong>Расстояние от наблюдателя до эпицентра:</strong> м</li>
+            <li><strong>Избыточное давление в точке наблюдателя:</strong> кПа</li>
+            <li><strong>Вероятность потери ориентации (Pr3):</strong> %</li>
+            <li><strong>Вероятность разрыва барабанных перепонок (Pr4):</strong> %</li>
+            <li><strong>Вероятность отброса ударной волной (Pr5):</strong> %</li>
+            <li><strong>Степень повреждения объекта:</strong> Слабое/Среднее/Сильное/Полное</li>
+        </ul>
+
+        <div class="screenshot-container">
+            <img src="Result.png">
+            <div class="screenshot-caption">Рис. 11: Блок "Оценка рисков для наблюдателя"</div>
+        </div>
+
+        <h4>3.4.4. Экспорт результатов</h4>
+        <p>Для сохранения результатов нажмите кнопку <strong>"Экспорт"</strong> или <strong>"Сохранить отчёт"</strong>.
+            Доступные форматы: Excel (.xlsx), PDF или текстовый файл (.txt).</p>
+
+        <div class="screenshot-container">
+            <img src="export.png">
+            <div class="screenshot-caption">Рис. 12: Диалоговое окно экспорта результатов</div>
+        </div>
+    </section>
+
+    <section id="admin-guide">
+        <h2>4. Руководство администратора</h2>
+
+        <h3>4.1. Вход в режим администратора</h3>
+        <p>Для входа в режим администратора используйте учётные данные с ролью "Администратор". После авторизации в
+            главном меню станут доступны дополнительные пункты.</p>
+
+        <div class="screenshot-container">
+            <img src="admin.png">
+            <div class="screenshot-caption">Рис. 13: Главное меню с выделенными пунктами администрирования</div>
+        </div>
+
+        <h3>4.2. Интерфейс администрирования базы данных</h3>
+
+        <h4>4.2.1. Управление справочником веществ</h4>
+        <p>В разделе "Администрирование → Вещества" доступны функции добавления, редактирования и удаления записей о
+            потенциально опасных веществах.</p>
+
+        <div class="screenshot-container">
+            <img src="admin-substance.png">
+            <div class="screenshot-caption">Рис. 14: Форма редактирования справочника веществ</div>
+        </div>
+
+        <h4>4.2.2. Управление справочником объектов</h4>
+        <p>В разделе "Администрирование → Объекты" можно управлять типами и параметрами объектов шахтного типа.</p>
+
+        <div class="screenshot-container">
+            <img src="admin-objects.png">
+            <div class="screenshot-caption">Рис. 15: Форма управления справочником объектов</div>
+        </div>
+
+        <h4>4.2.3. Управление справочниками грунтов и воздуха</h4>
+        <p>Разделы "Грунты" и "Воздух" позволяют настроить параметры окружающей среды для расчётов.</p>
+
+        <div class="screenshot-container">
+            <img src="admin-enviroment.png">
+            <div class="screenshot-caption">Рис. 16: Форма редактирования параметров грунта</div>
+        </div>
+
+        <h4>4.2.4. Управление пользователями</h4>
+        <p>В разделе "Администрирование → Пользователи" доступны функции:</p>
+        <ul>
+            <li>Добавление новых пользователей</li>
+            <li>Изменение паролей</li>
+            <li>Назначение ролей (Пользователь/Администратор)</li>
+            <li>Блокировка/удаление учётных записей</li>
+        </ul>
+
+        <div class="screenshot-container">
+            <img src="admin-users.png">
+            <div class="screenshot-caption">Рис. 17: Форма управления пользователями системы</div>
+        </div>
+
+        <div class="warning">
+            <strong>Важно!</strong> Пароли хранятся в базе данных в виде хэш-значений. Администратор не может
+            просмотреть текущий пароль пользователя, но может установить новый.
+        </div>
+    </section>
+
+    <section id="requirements">
+        <h2>5. Технические требования и поддержка</h2>
+
+        <h3>5.1. Минимальные системные требования</h3>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Компонент</th>
+                <th>Минимальные требования</th>
+                <th>Рекомендуемые требования</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Операционная система</td>
+                <td>Windows 7 (64-bit)</td>
+                <td>Windows 10/11 (64-bit)</td>
+            </tr>
+            <tr>
+                <td>Процессор</td>
+                <td>2 ГГц, 2 ядра</td>
+                <td>Intel Core i5 / AMD Ryzen 5 или выше</td>
+            </tr>
+            <tr>
+                <td>Оперативная память (ОЗУ)</td>
+                <td>4 ГБ</td>
+                <td>8 ГБ</td>
+            </tr>
+            <tr>
+                <td>Свободное место на диске</td>
+                <td>1 ГБ</td>
+                <td>2 ГБ</td>
+            </tr>
+            <tr>
+                <td>Необходимое программное обеспечение</td>
+                <td colspan="2">.NET Framework 4.7.2 или выше</td>
+            </tr>
+            <tr>
+                <td>Разрешение экрана</td>
+                <td>1366 × 768</td>
+                <td>1920 × 1080 или выше</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>5.2. Установка и запуск</h3>
+        <ol>
+            <li>Распакуйте дистрибутив программы в выбранную папку.</li>
+            <li>Убедитесь, что на компьютере установлен .NET Framework версии 4.7.2 или выше.</li>
+            <li>Для запуска программы выполните двойной клик по файлу <code>NS_SHT.exe</code>.</li>
+            <li>При первом запуске система может запросить разрешения на доступ к сети (для проверки обновлений) и
+                файловой системе (для работы с базой данных).
+            </li>
+        </ol>
+
+        <div class="note">
+            <strong>Примечание:</strong> Для нормальной работы программы требуются права на запись в папку с программой
+            (или в папку пользователя) для создания и обновления файла базы данных.
+        </div>
+
+        <h3>5.3. Контакты для технической поддержки</h3>
+        <p>В случае возникновения проблем или вопросов по работе программного комплекса обращайтесь:</p>
+        <ul>
+            <li><strong>Ответственный разработчик:</strong> Новая Дарья Александровна</li>
+            <li><strong>Руководитель проекта:</strong> Кузнецова Г.В., доцент кафедры САПРиУ</li>
+            <li><strong>Кафедра:</strong> Систем автоматизированного проектирования и управления (САПРиУ)</li>
+            <li><strong>Учреждение:</strong> Санкт-Петербургский государственный технологический институт (технический
+                университет)
+            </li>
+        </ul>
+    </section>
+
+    <section id="appendix">
+        <h2>6. Приложения (глоссарий)</h2>
+
+        <h3>6.1. Основные термины и определения</h3>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Термин</th>
+                <th>Определение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Нештатная ситуация (НС)</td>
+                <td>Совокупность условий и обстоятельств при использовании технических систем, отличающихся от
+                    предусмотренных проектами, нормами и регламентами и ведущих к возникновению опасных состояний в
+                    технических системах.
+                </td>
+            </tr>
+            <tr>
+                <td>Объект шахтного типа</td>
+                <td>Объект с ограниченным замкнутым пространством, характеризующийся большой протяжённостью и малой
+                    площадью горизонтального сечения (коллекторы, трубопроводы, резервуары, скважины).
+                </td>
+            </tr>
+            <tr>
+                <td>Избыточное давление (ΔP)</td>
+                <td>Давление, превышающее атмосферное, во фронте ударной волны. Измеряется в килопаскалях (кПа).
+                    Основной поражающий фактор при взрыве.
+                </td>
+            </tr>
+            <tr>
+                <td>Импульс фазы сжатия (I)</td>
+                <td>Интеграл избыточного давления по времени действия фазы сжатия. Измеряется в кг·м/с. Характеризует
+                    ударное воздействие волны.
+                </td>
+            </tr>
+            <tr>
+                <td>Пробит-функция (Pr)</td>
+                <td>Вероятностная функция, используемая для оценки вероятности поражения людей при воздействии опасных
+                    факторов. В программе рассчитываются Pr3 (потеря ориентации), Pr4 (разрыв барабанных перепонок), Pr5
+                    (отброс ударной волной).
+                </td>
+            </tr>
+            <tr>
+                <td>Загромождённость пространства</td>
+                <td>Степень заполнения объекта оборудованием, конструкциями и другими предметами. Классифицируется от 1
+                    (максимальная загромождённость) до 4 (свободное пространство). Влияет на режим взрывного превращения
+                    и скорость фронта пламени.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>6.2. Используемые математические модели (кратко)</h3>
+        <p>В основе расчётов программного комплекса лежат методики, описанные в следующих нормативных документах и
+            источниках:</p>
+        <ul>
+            <li>Руководство по безопасности «Методика оценки последствий аварийных взрывов топливно-воздушных смесей»
+                (2015)
+            </li>
+            <li>Приказ МЧС РФ от 10.07.2009 N 404 «Методика определения расчетных величин пожарного риска на
+                производственных объектах»
+            </li>
+            <li>Отраслевое руководство по анализу и управлению риском (РАО «Газпром», 1996)</li>
+        </ul>
+        <p>Расчёт включает определение приведённой массы газа, эффективного энергозапаса ТВС, безразмерного давления и
+            импульса, а также оценку вероятности поражения людей через пробит-функции.</p>
+    </section>
+</main>
+
+<footer>
+    <p>© 2025 Санкт-Петербургский государственный технологический институт (технический университет)</p>
+    <p>Кафедра систем автоматизированного проектирования и управления (САПРиУ)</p>
+    <p>Веб-справка составлена на основе отчёта к выпускной квалификационной работе бакалавра</p>
+</footer>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {/*поиск(DOMContentLoaded - после загрузки всего)*/
+        const searchContainer = document.createElement('div');
+        searchContainer.id = 'search-container';
+        searchContainer.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(183, 247, 193,0);
+            border: 1px solid #ddd;
+            min-width: 250px;
+        `;
+
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.id = 'search-input';
+        searchInput.placeholder = 'Поиск по тексту...';
+        searchInput.style.cssText = `
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #4a6491;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        `;
+
+        const resultsCount = document.createElement('div');
+        resultsCount.id = 'search-results-count';
+        resultsCount.style.cssText = `
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            text-align: center;
+        `;
+
+        const prevBtn = document.createElement('button');
+        prevBtn.id = 'search-prev';
+        prevBtn.textContent = '← Назад';
+        prevBtn.style.cssText = `
+            padding: 6px 12px;
+            background: #59BD68;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 5px;
+        `;
+
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'search-next';
+        nextBtn.textContent = 'Вперед →';
+        nextBtn.style.cssText = `
+            padding: 6px 12px;
+            background: #59BD68;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        `;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.id = 'search-close';
+        closeBtn.textContent = '✕';
+        closeBtn.title = 'Закрыть поиск';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+        `;
+
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.style.cssText = 'display: flex; justify-content: center;';
+        buttonsContainer.appendChild(prevBtn);
+        buttonsContainer.appendChild(nextBtn);
+
+        searchContainer.appendChild(closeBtn);
+        searchContainer.appendChild(searchInput);
+        searchContainer.appendChild(resultsCount);
+        searchContainer.appendChild(buttonsContainer);
+
+        document.body.appendChild(searchContainer);
+        searchContainer.style.display = 'none';
+
+        const searchToggle = document.createElement('button');
+        searchToggle.id = 'search-toggle';
+        searchToggle.textContent = '🔍';
+        searchToggle.title = 'Поиск по тексту';
+        searchToggle.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            background: #59BD68;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        `;
+
+        document.body.appendChild(searchToggle);
+
+        let currentMatch = -1;/*Указываем на совпадение*/
+        let matches = [];
+        let highlights = [];
+
+        function performSearch() { /*Поиск текста*/
+            const searchText = searchInput.value.trim();/*Собираем в строчку и убираем пробелы*/
+            if (!searchText) {
+                clearHighlights();/*Чистим строчку*/
+                resultsCount.textContent = 'Введите текст для поиска';
+                return;
+            }
+
+            clearHighlights();
+            const content = document.querySelector('main');/*Поиск внутри основного*/
+            const walker = document.createTreeWalker(/*Обход узлов дерева*/
+                content,
+                NodeFilter.SHOW_TEXT,/*Показать узлы текста*/
+                {
+                    acceptNode: function (node) {/*исключения из текста*/
+                        if (node.parentElement.tagName === 'SCRIPT' ||
+                            node.parentElement.tagName === 'STYLE' ||
+                            node.parentElement.style.display === 'none') {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+
+            matches = [];
+            let node;
+            const regex = new RegExp(searchText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');/*превращение символов в обычный текст*/
+
+            while (node = walker.nextNode()) {/*получение текстового узла*/
+                const text = node.textContent;
+                let match;
+                while ((match = regex.exec(text)) !== null) {/*поиск совпадений*/
+                    matches.push({/*фиксирование найденных совпадений*/
+                        node: node,/*узел найденного совпадения*/
+                        index: match.index,
+                        length: match[0].length
+                    });
+                }
+            }
+
+            if (matches.length > 0) {
+                resultsCount.textContent = `Найдено: ${matches.length} совпадений`;
+                currentMatch = 0;
+                highlightCurrentMatch();
+            } else {
+                resultsCount.textContent = 'Совпадений не найдено';
+                currentMatch = -1;
+            }
+        }
+
+        function highlightCurrentMatch() {/*Подсветка совпадений*/
+            clearHighlights();
+            if (currentMatch >= 0 && currentMatch < matches.length) {
+                const match = matches[currentMatch];
+                const span = document.createElement('span');
+                span.className = 'search-highlight';
+                span.style.cssText = 'background-color: #ffeb3b !important; color: #000 !important; padding: 2px 0 !important; font-weight: bold !important;';
+                span.textContent = match.node.textContent.substring(match.index, match.index + match.length);
+
+                const range = document.createRange();
+                range.setStart(match.node, match.index);
+                range.setEnd(match.node, match.index + match.length);
+                range.deleteContents();
+                range.insertNode(span);
+                highlights.push(span);
+
+                span.scrollIntoView({behavior: 'smooth', block: 'center'});
+
+                resultsCount.textContent = `Найдено: ${matches.length} совпадений (${currentMatch + 1}/${matches.length})`;
+            }
+        }
+
+        function clearHighlights() {/*чистим то, что было выделено*/
+            highlights.forEach(span => {
+                if (span.parentNode) {
+                    const parent = span.parentNode;
+                    parent.replaceChild(document.createTextNode(span.textContent), span);
+                    parent.normalize();
+                }
+            });
+            highlights = [];
+        }
+
+        searchToggle.addEventListener('click', () => {/*Открытие и закрытие панели поиска*/
+            searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+            if (searchContainer.style.display === 'block') {
+                searchInput.focus();
+            } else {
+                clearHighlights();
+                searchInput.value = '';
+                resultsCount.textContent = '';
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            searchContainer.style.display = 'none';
+            clearHighlights();
+            searchInput.value = '';
+            resultsCount.textContent = '';
+        });
+
+        searchInput.addEventListener('input', performSearch);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                currentMatch = (currentMatch + 1) % matches.length;
+                highlightCurrentMatch();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (matches.length > 0) {
+                currentMatch = (currentMatch - 1 + matches.length) % matches.length;
+                highlightCurrentMatch();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (matches.length > 0) {
+                currentMatch = (currentMatch + 1) % matches.length;
+                highlightCurrentMatch();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target) && e.target !== searchToggle && searchContainer.style.display === 'block') {
+                searchContainer.style.display = 'none';
+                clearHighlights();
+                searchInput.value = '';
+                resultsCount.textContent = '';
+            }
+        });
+
+        const themeToggle = document.createElement('button');
+        themeToggle.id = 'theme-toggle';
+        themeToggle.textContent = '🌙';
+        themeToggle.title = 'Переключить тему';
+        themeToggle.style.cssText = `
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 999;
+            background: #59BD68;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        `;
+
+        document.body.appendChild(themeToggle);
+
+        themeToggle.addEventListener('click', () => {
+            if (document.body.classList.contains('dark-theme')) {
+                document.body.classList.remove('dark-theme'); /*Светлая тема*/
+                themeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark-theme');/*Тёмная тема*/
+                themeToggle.textContent = '☀️';
+            }
+        });
+
+        const scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.id = 'scroll-to-top';
+        scrollToTopBtn.textContent = '↑';
+        scrollToTopBtn.title = 'Наверх';
+        scrollToTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: #59BD68;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: opacity 0.3s, transform 0.3s;
+        `;
+
+        document.body.appendChild(scrollToTopBtn);
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.display = 'flex';
+                setTimeout(() => {
+                    scrollToTopBtn.style.opacity = '1';
+                    scrollToTopBtn.style.transform = 'scale(1)';
+                }, 10);
+            } else {
+                scrollToTopBtn.style.opacity = '0';
+                scrollToTopBtn.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    scrollToTopBtn.style.display = 'none';
+                }, 300);
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</html>

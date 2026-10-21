@@ -1,0 +1,30 @@
+<Project>
+
+  <!-- Централизованное управление версиями NuGet-пакетов.
+       Версии задаются только здесь, в .csproj указываются лишь имена пакетов. -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup Label="UI">
+    <PackageVersion Include="MaterialDesignColors" Version="5.2.1" />
+    <PackageVersion Include="MaterialDesignThemes" Version="5.2.1" />
+    <PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.3650.58" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup Label="Графики">
+    <PackageVersion Include="ChartDirector.Net.Desktop.Controls" Version="7.1.0" />
+    <PackageVersion Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.1" />
+    <PackageVersion Include="ScottPlot.WPF" Version="5.0.54" />
+  </ItemGroup>
+
+  <ItemGroup Label="Данные">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0" />
+    <PackageVersion Include="System.Data.OleDb" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
+  </ItemGroup>
+
+</Project>
