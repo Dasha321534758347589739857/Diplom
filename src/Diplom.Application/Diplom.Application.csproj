@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Сценарии использования и интерфейсы (репозитории, диалоги, навигация). -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

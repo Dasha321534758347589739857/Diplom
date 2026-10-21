@@ -3,10 +3,18 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <!-- Имя сборки и корневое пространство имён сохранены прежними,
+         чтобы не менялись pack-URI ресурсов, x:Class и имя Diplom.exe. -->
+    <AssemblyName>Diplom</AssemblyName>
+    <RootNamespace>Diplom</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
+    <ProjectReference Include="..\Diplom.Application\Diplom.Application.csproj" />
+    <ProjectReference Include="..\Diplom.Infrastructure\Diplom.Infrastructure.csproj" />
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;XDG0006;XDG0003</NoWarn>

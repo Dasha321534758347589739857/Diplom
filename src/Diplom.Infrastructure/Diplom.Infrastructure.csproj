@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Доступ к данным (EF Core + SQLite), конфигурация, экспорт. -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diplom.Application\Diplom.Application.csproj" />
+  </ItemGroup>
+
+</Project>

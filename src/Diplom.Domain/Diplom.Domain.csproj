@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Ядро: сущности и расчётные модели. Не зависит ни от EF, ни от WPF. -->
+
+</Project>
